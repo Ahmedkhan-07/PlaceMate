@@ -1,0 +1,73 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+    content: [
+        './pages/**/*.{js,ts,jsx,tsx,mdx}',
+        './components/**/*.{js,ts,jsx,tsx,mdx}',
+        './app/**/*.{js,ts,jsx,tsx,mdx}',
+    ],
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['Inter', 'system-ui', 'sans-serif'],
+            },
+            colors: {
+                primary: '#2563EB',
+                'primary-dark': '#1D4ED8',
+                secondary: '#6366F1',
+                background: '#F8F9FA',
+                surface: '#FFFFFF',
+                sidebar: '#1E3A5F',
+                'sidebar-hover': '#2D5086',
+                success: '#16A34A',
+                warning: '#D97706',
+                danger: '#DC2626',
+                'text-primary': '#1E293B',
+                'text-secondary': '#64748B',
+                border: '#E2E8F0',
+                gold: '#F59E0B',
+                silver: '#94A3B8',
+                bronze: '#B45309',
+                // Legacy aliases
+                bg: '#F8F9FA',
+                surface: '#FFFFFF',
+                textPrimary: '#1E293B',
+                textSecondary: '#64748B',
+            },
+            borderRadius: {
+                card: '16px',
+                xl: '12px',
+                '2xl': '16px',
+            },
+            boxShadow: {
+                card: '0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)',
+                'card-hover': '0 4px 12px rgba(0,0,0,0.10), 0 8px 32px rgba(0,0,0,0.07)',
+                btn: '0 2px 8px rgba(37,99,235,0.25)',
+                'btn-hover': '0 4px 16px rgba(37,99,235,0.35)',
+                glow: '0 0 20px rgba(37,99,235,0.3)',
+            },
+            keyframes: {
+                'fade-in': { from: { opacity: '0', transform: 'translateY(8px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+                'slide-in': { from: { opacity: '0', transform: 'translateX(-12px)' }, to: { opacity: '1', transform: 'translateX(0)' } },
+                'scale-in': { from: { opacity: '0', transform: 'scale(0.9)' }, to: { opacity: '1', transform: 'scale(1)' } },
+                'flip-in': { from: { transform: 'rotateY(90deg)' }, to: { transform: 'rotateY(0deg)' } },
+                'spin-slow': { to: { transform: 'rotate(360deg)' } },
+                'pulse-glow': { '0%,100%': { boxShadow: '0 0 8px rgba(37,99,235,0.3)' }, '50%': { boxShadow: '0 0 20px rgba(37,99,235,0.6)' } },
+                shimmer: { from: { backgroundPosition: '-200% 0' }, to: { backgroundPosition: '200% 0' } },
+                confetti: { '0%': { transform: 'translateY(0) rotate(0deg)', opacity: '1' }, '100%': { transform: 'translateY(100vh) rotate(720deg)', opacity: '0' } },
+                bounce: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
+            },
+            animation: {
+                'fade-in': 'fade-in 0.4s ease-out',
+                'slide-in': 'slide-in 0.3s ease-out',
+                'scale-in': 'scale-in 0.3s ease-out',
+                'flip-in': 'flip-in 0.4s ease-out',
+                'spin-slow': 'spin-slow 2s linear infinite',
+                'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                'shimmer': 'shimmer 2s linear infinite',
+                'confetti': 'confetti 2s ease-out forwards',
+                'bounce-slow': 'bounce 1s ease-in-out infinite',
+            },
+        },
+    },
+    plugins: [],
+};

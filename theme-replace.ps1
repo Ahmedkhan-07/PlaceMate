@@ -1,0 +1,45 @@
+$files = Get-ChildItem -Path 'c:\PROJECTS\PlaceMate\components','c:\PROJECTS\PlaceMate\app' -Recurse -Include '*.jsx' | Where-Object { $_.FullName -notmatch 'node_modules' -and $_.FullName -notmatch '\.next' }
+foreach ($file in $files) {
+    $content = Get-Content $file.FullName -Raw
+    if ($content -match 'slate|indigo') {
+        $content = $content -replace 'slate-900/80', 'gray-50'
+        $content = $content -replace 'slate-900/60', 'gray-50'
+        $content = $content -replace 'slate-900', 'gray-50'
+        $content = $content -replace 'slate-800/80', 'white'
+        $content = $content -replace 'slate-800/60', 'white'
+        $content = $content -replace 'slate-800/40', 'gray-50'
+        $content = $content -replace 'slate-800', 'white'
+        $content = $content -replace 'slate-700/50', 'gray-200'
+        $content = $content -replace 'slate-700/40', 'gray-100'
+        $content = $content -replace 'slate-700', 'gray-200'
+        $content = $content -replace 'slate-600/50', 'gray-200'
+        $content = $content -replace 'slate-600', 'gray-300'
+        $content = $content -replace 'slate-500', 'gray-400'
+        $content = $content -replace 'slate-400', 'gray-500'
+        $content = $content -replace 'slate-300', 'gray-700'
+        $content = $content -replace 'slate-200', 'gray-800'
+        $content = $content -replace 'slate-100', 'gray-900'
+        $content = $content -replace 'indigo-950/30', 'emerald-950/30'
+        $content = $content -replace 'indigo-950', 'emerald-950'
+        $content = $content -replace 'indigo-900/60', 'emerald-800/60'
+        $content = $content -replace 'indigo-900', 'emerald-900'
+        $content = $content -replace 'indigo-700', 'emerald-800'
+        $content = $content -replace 'indigo-600', 'emerald-700'
+        $content = $content -replace 'indigo-500/50', 'emerald-600/50'
+        $content = $content -replace 'indigo-500/30', 'emerald-600/30'
+        $content = $content -replace 'indigo-500/20', 'emerald-600/20'
+        $content = $content -replace 'indigo-500/10', 'emerald-50'
+        $content = $content -replace 'indigo-500/5', 'emerald-50/50'
+        $content = $content -replace 'indigo-500', 'emerald-700'
+        $content = $content -replace 'indigo-400', 'emerald-700'
+        $content = $content -replace 'indigo-300', 'emerald-800'
+        $content = $content -replace 'indigo-100', 'emerald-100'
+        $content = $content -replace 'blue-500/20', 'emerald-600/20'
+        $content = $content -replace 'blue-500/10', 'emerald-50'
+        $content = $content -replace 'blue-500', 'emerald-600'
+        $content = $content -replace 'blue-400', 'emerald-600'
+        Set-Content $file.FullName -Value $content -NoNewline
+        Write-Host "Updated: $($file.FullName)"
+    }
+}
+Write-Host 'Done!'
