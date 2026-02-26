@@ -21,7 +21,7 @@ const DEFAULT_CODE = {
 };
 
 export default function CodingPage() {
-    const { toast } = useToast();
+    const toast = useToast();
     const [language, setLanguage] = useState('python');
     const [code, setCode] = useState(DEFAULT_CODE.python);
     const [problem, setProblem] = useState(null);
@@ -40,11 +40,13 @@ export default function CodingPage() {
             });
             const data = await res.json();
             if (!res.ok) throw new Error(data.error || 'Failed');
-            setProblem(data.problem);
-            setCode(data.starterCode || DEFAULT_CODE[language]);
+            const problems = data.problems || [];
+            if (problems.length === 0) throw new Error('No problem generated');
+            setProblem(problems[0]);
+            setCode(problems[0]?.starterCode || DEFAULT_CODE[language]);
             setOutput(null);
         } catch (e) {
-            toast(e.message, 'error');
+            toast.error(e.message);
         } finally {
             setGenerating(false);
         }
@@ -62,7 +64,7 @@ export default function CodingPage() {
             const data = await res.json();
             setOutput(data);
         } catch (e) {
-            toast(e.message, 'error');
+            toast.error(e.message);
         } finally {
             setRunning(false);
         }
