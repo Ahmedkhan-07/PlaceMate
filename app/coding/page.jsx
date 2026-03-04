@@ -8,7 +8,7 @@ import OutputPanel from '@/components/coding/OutputPanel';
 import Button from '@/components/ui/Button';
 import { Select } from '@/components/ui/Input';
 import { useToast } from '@/context/ToastContext';
-import { Wand2, Play } from 'lucide-react';
+import { Wand2 } from 'lucide-react';
 
 const LANGUAGES = ['python', 'javascript', 'java', 'cpp', 'c'];
 
@@ -28,22 +28,30 @@ export default function CodingPage() {
     const [output, setOutput] = useState(null);
     const [generating, setGenerating] = useState(false);
     const [running, setRunning] = useState(false);
+    const [difficulty, setDifficulty] = useState('medium');
+    const [submitting, setSubmitting] = useState(false);
+    const [testResults, setTestResults] = useState([]);
+    const [showResults, setShowResults] = useState(false);
+    const [customInput, setCustomInput] = useState('');
 
     const generateProblem = async () => {
         setGenerating(true);
+        setShowResults(false);
+        setTestResults([]);
         try {
             const token = localStorage.getItem('placemate_token');
             const res = await fetch('/api/coding/generate', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-                body: JSON.stringify({ language, difficulty: 'medium' }),
+                body: JSON.stringify({ language, difficulty }),
             });
             const data = await res.json();
             if (!res.ok) throw new Error(data.error || 'Failed');
-            const problems = data.problems || [];
-            if (problems.length === 0) throw new Error('No problem generated');
-            setProblem(problems[0]);
-            setCode(problems[0]?.starterCode || DEFAULT_CODE[language]);
+            // Support both { problem } (new) and { problems } (old fallback) shapes
+            const p = data.problem || (data.problems || [])[0];
+            if (!p) throw new Error('No problem generated');
+            setProblem(p);
+            setCode(p?.starterCode || DEFAULT_CODE[language]);
             setOutput(null);
         } catch (e) {
             toast.error(e.message);
@@ -52,21 +60,98 @@ export default function CodingPage() {
         }
     };
 
-    const runCode = async (testCases) => {
+    const handleRun = async () => {
         setRunning(true);
+        setOutput(null);
         try {
             const token = localStorage.getItem('placemate_token');
             const res = await fetch('/api/coding/execute', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-                body: JSON.stringify({ language, code, stdin: testCases[0]?.input || '' }),
+                body: JSON.stringify({ language, code, stdin: customInput || '' }),
             });
             const data = await res.json();
             setOutput(data);
         } catch (e) {
-            toast.error(e.message);
+            toast.error('Execution failed');
         } finally {
             setRunning(false);
+        }
+    };
+
+    const handleSubmit = async () => {
+        try {
+            setSubmitting(true);
+            const token = localStorage.getItem('placemate_token');
+            let passed = 0;
+            const results = [];
+
+            for (const testCase of problem.testCases) {
+                const res = await fetch('/api/coding/execute', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ code, language, stdin: testCase.input }),
+                });
+                const data = await res.json();
+
+                const actualOutput = (data.output || data.stdout || '')
+                    .trim()
+                    .replace(/\r\n/g, '\n')
+                    .replace(/\r/g, '\n');
+                const expectedOutput = (testCase.output || testCase.expectedOutput || '')
+                    .trim()
+                    .replace(/\r\n/g, '\n')
+                    .replace(/\r/g, '\n');
+
+                const isPassed = actualOutput === expectedOutput;
+                if (isPassed) passed++;
+
+                results.push({
+                    input: testCase.input,
+                    expected: expectedOutput,
+                    actual: actualOutput,
+                    passed: isPassed,
+                });
+            }
+
+            const score = Math.round((passed / problem.testCases.length) * 100);
+            setTestResults(results);
+            setShowResults(true);
+
+            await fetch('/api/scores', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+                body: JSON.stringify({
+                    round: 'coding',
+                    topic: problem.topic || 'General',
+                    difficulty,
+                    score,
+                    totalQuestions: problem.testCases.length,
+                    correctAnswers: passed,
+                }),
+            });
+
+            await fetch('/api/badges/check', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+                body: JSON.stringify({ round: 'coding', score }),
+            });
+
+            if (passed === problem.testCases.length) {
+                toast.success(`Perfect! All ${passed}/${problem.testCases.length} test cases passed! 🎉`);
+            } else if (passed > 0) {
+                toast(`${passed}/${problem.testCases.length} test cases passed (${score}%)`);
+            } else {
+                toast.error(`0/${problem.testCases.length} test cases passed. Keep trying!`);
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error('Submission failed');
+        } finally {
+            setSubmitting(false);
         }
     };
 
@@ -93,20 +178,92 @@ export default function CodingPage() {
                     </div>
                 </div>
 
+                {/* Difficulty Selector */}
+                <div className="flex gap-3 mb-4">
+                    {['easy', 'medium', 'hard', 'dynamic'].map(level => (
+                        <button
+                            key={level}
+                            onClick={() => setDifficulty(level)}
+                            className={`px-4 py-2 rounded-xl font-semibold capitalize transition-all duration-200 ${difficulty === level
+                                ? level === 'easy' ? 'bg-green-500 text-white shadow-md'
+                                    : level === 'medium' ? 'bg-yellow-500 text-white shadow-md'
+                                        : level === 'hard' ? 'bg-red-500 text-white shadow-md'
+                                            : 'bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-md'
+                                : 'bg-white border border-gray-200 text-gray-500 hover:border-purple-400'
+                                }`}
+                        >
+                            {level}
+                        </button>
+                    ))}
+                </div>
+
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     {/* Left: Problem */}
                     <div className="bg-white border border-gray-200 rounded-xl p-5 h-[600px] overflow-auto">
                         <ProblemStatement problem={problem} />
                     </div>
-                    {/* Right: Editor + Test */}
+                    {/* Right: Editor + Test + Submit */}
                     <div className="space-y-3">
                         <CodeEditor code={code} onChange={setCode} language={language} height="380px" />
+
+                        {/* Custom stdin input */}
+                        <div>
+                            <label className="text-sm font-medium text-gray-400 mb-1 block">Custom Input (stdin)</label>
+                            <textarea
+                                value={customInput}
+                                onChange={e => setCustomInput(e.target.value)}
+                                placeholder="Enter input here e.g. 1 2 3 4 5"
+                                className="w-full h-24 px-4 py-3 rounded-xl border border-gray-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 outline-none font-mono text-sm resize-none bg-white text-gray-800"
+                            />
+                        </div>
+
+                        {/* Run + Submit buttons */}
+                        <div className="flex justify-end gap-3">
+                            <button
+                                onClick={handleRun}
+                                disabled={running || !code}
+                                className="px-6 py-2 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-500 to-blue-600 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {running ? 'Running...' : '▶ Run'}
+                            </button>
+                            <button
+                                onClick={handleSubmit}
+                                disabled={submitting || !problem || !code}
+                                className="px-6 py-2 rounded-xl font-semibold text-white bg-gradient-to-r from-green-500 to-green-600 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {submitting ? 'Submitting...' : 'Submit Solution'}
+                            </button>
+                        </div>
+
                         <TestCasePanel
                             testCases={problem?.examples || []}
-                            onRun={runCode}
-                            running={running}
                         />
                         <OutputPanel output={output} />
+
+                        {/* Test Results Panel */}
+                        {showResults && (
+                            <div className="mt-4 space-y-3">
+                                <h3 className="font-semibold text-white text-lg">Test Results</h3>
+                                {testResults.map((result, index) => (
+                                    <div
+                                        key={index}
+                                        className={`p-4 rounded-xl border ${result.passed ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}
+                                    >
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <span>{result.passed ? '✅' : '❌'}</span>
+                                            <span className="font-semibold">
+                                                {result.passed ? 'Passed' : 'Failed'} — Test Case {index + 1}
+                                            </span>
+                                        </div>
+                                        <div className="text-sm space-y-1">
+                                            <p><span className="font-medium">Input:</span> {result.input}</p>
+                                            <p><span className="font-medium">Expected:</span> {result.expected}</p>
+                                            <p><span className="font-medium">Your Output:</span> {result.actual}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
