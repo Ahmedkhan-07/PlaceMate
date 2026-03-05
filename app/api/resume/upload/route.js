@@ -1,58 +1,86 @@
-import { NextResponse } from 'next/server';
-import dbConnect from '@/lib/db';
-import Resume from '@/models/Resume';
-import { requireAuth } from '@/lib/auth';
-import { uploadBuffer } from '@/lib/cloudinary';
+import { v2 as cloudinary } from 'cloudinary'
+import { verifyToken } from '@/lib/auth'
+import connectDB from '@/lib/db'
+import User from '@/models/User'
 
-export async function POST(request) {
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+})
+
+export async function POST(req) {
     try {
-        const auth = await requireAuth(request);
-        if (auth.error) return auth.error;
+        await connectDB()
 
-        await dbConnect();
-        const formData = await request.formData();
-        const file = formData.get('file');
+        const token = req.headers.get('authorization')?.replace('Bearer ', '')
+        if (!token) {
+            return Response.json({ success: false, message: 'Unauthorized' }, { status: 401 })
+        }
+
+        const decoded = verifyToken(token)
+        if (!decoded) {
+            return Response.json({ success: false, message: 'Invalid token' }, { status: 401 })
+        }
+
+        const formData = await req.formData()
+        const file = formData.get('resume')
 
         if (!file) {
-            return NextResponse.json({ message: 'No file provided' }, { status: 400 });
+            return Response.json({ success: false, message: 'No file provided' }, { status: 400 })
         }
 
-        const allowedTypes = ['application/pdf'];
-        if (!allowedTypes.includes(file.type)) {
-            return NextResponse.json({ message: 'Only PDF files are allowed' }, { status: 400 });
+        // check file type
+        if (file.type !== 'application/pdf') {
+            return Response.json({ success: false, message: 'Only PDF files allowed' }, { status: 400 })
         }
 
-        const buffer = Buffer.from(await file.arrayBuffer());
+        // check file size (max 5MB)
+        if (file.size > 5 * 1024 * 1024) {
+            return Response.json({ success: false, message: 'File size must be under 5MB' }, { status: 400 })
+        }
 
-        const result = await uploadBuffer(buffer, {
-            folder: 'placemate/resumes',
-            resource_type: 'raw',
-            format: 'pdf',
-        });
+        // convert to buffer
+        const bytes = await file.arrayBuffer()
+        const buffer = Buffer.from(bytes)
 
-        const resume = await Resume.create({
-            userId: auth.userId,
-            cloudinaryUrl: result.secure_url,
-            cloudinaryPublicId: result.public_id,
-            originalName: file.name,
-        });
+        // upload to cloudinary
+        const uploadResult = await new Promise((resolve, reject) => {
+            cloudinary.uploader.upload_stream(
+                {
+                    resource_type: 'raw',
+                    folder: 'placemate/resumes',
+                    format: 'pdf',
+                    public_id: `resume_${decoded.id}_${Date.now()}`
+                },
+                (error, result) => {
+                    if (error) reject(error)
+                    else resolve(result)
+                }
+            ).end(buffer)
+        })
 
-        return NextResponse.json({ resume }, { status: 201 });
+        // save to user document
+        await User.findByIdAndUpdate(decoded.id, {
+            $push: {
+                resumeHistory: {
+                    url: uploadResult.secure_url,
+                    publicId: uploadResult.public_id,
+                    filename: file.name,
+                    uploadedAt: new Date()
+                }
+            },
+            currentResume: uploadResult.secure_url
+        })
+
+        return Response.json({
+            success: true,
+            url: uploadResult.secure_url,
+            message: 'Resume uploaded successfully'
+        }, { status: 200 })
+
     } catch (error) {
-        console.error('Resume upload error:', error);
-        return NextResponse.json({ message: 'Upload failed' }, { status: 500 });
-    }
-}
-
-export async function GET(request) {
-    try {
-        const auth = await requireAuth(request);
-        if (auth.error) return auth.error;
-
-        await dbConnect();
-        const resumes = await Resume.find({ userId: auth.userId }).sort({ createdAt: -1 });
-        return NextResponse.json({ resumes });
-    } catch (error) {
-        return NextResponse.json({ message: 'Server error' }, { status: 500 });
+        console.error('Resume upload error:', error)
+        return Response.json({ success: false, message: 'Upload failed: ' + error.message }, { status: 500 })
     }
 }

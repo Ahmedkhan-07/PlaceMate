@@ -34,7 +34,7 @@ export default function ResumeCard({ user }) {
         try {
             const token = localStorage.getItem('placemate_token');
             const fd = new FormData();
-            fd.append('file', file);
+            fd.append('resume', file);
             await fetch('/api/resume/upload', {
                 method: 'POST',
                 headers: { Authorization: `Bearer ${token}` },
@@ -115,16 +115,26 @@ export default function ResumeCard({ user }) {
                 </div>
             ) : (
                 /* No resume — upload prompt */
-                <div
-                    onClick={() => fileRef.current?.click()}
-                    className="border-2 border-dashed border-border rounded-xl p-6 text-center cursor-pointer hover:border-primary/50 hover:bg-background transition-all"
-                >
-                    <div className="w-10 h-10 rounded-xl mx-auto mb-2 flex items-center justify-center"
-                        style={{ background: 'linear-gradient(135deg, #2563EB15, #6366F115)' }}>
-                        <Upload size={18} style={{ color: '#2563EB' }} />
+                <div className="space-y-3">
+                    <div
+                        onClick={() => fileRef.current?.click()}
+                        className="border-2 border-dashed border-border rounded-xl p-6 text-center cursor-pointer hover:border-primary/50 hover:bg-background transition-all"
+                    >
+                        <div className="w-10 h-10 rounded-xl mx-auto mb-2 flex items-center justify-center"
+                            style={{ background: 'linear-gradient(135deg, #2563EB15, #6366F115)' }}>
+                            <Upload size={18} style={{ color: '#2563EB' }} />
+                        </div>
+                        <p className="text-sm font-semibold text-text-primary">Upload your Resume</p>
+                        <p className="text-xs text-text-secondary mt-1">PDF, DOC, DOCX — Get AI score & suggestions</p>
                     </div>
-                    <p className="text-sm font-semibold text-text-primary">Upload your Resume</p>
-                    <p className="text-xs text-text-secondary mt-1">PDF, DOC, DOCX — Get AI score & suggestions</p>
+                    <a
+                        href="https://placement-os-nine.vercel.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-white bg-gradient-to-r from-primary to-secondary shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 mt-3"
+                    >
+                        📄 Don't have a resume? Build one here
+                    </a>
                 </div>
             )}
         </div>

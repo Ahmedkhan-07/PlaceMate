@@ -39,6 +39,13 @@ const UserSchema = new mongoose.Schema({
     resumeUploadDate: { type: Date },
     resumeScore: { type: Number, default: 0 },
     resumeSuggestions: [{ type: String }],
+    currentResume: { type: String, default: '' },
+    resumeHistory: [{
+        url: String,
+        publicId: String,
+        filename: String,
+        uploadedAt: { type: Date, default: Date.now }
+    }],
 
     // Badges & Privacy
     badges: [{ type: String }],
