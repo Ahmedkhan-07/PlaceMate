@@ -8,7 +8,6 @@ import StreakWidget from '@/components/dashboard/StreakWidget';
 import DailyGoal from '@/components/dashboard/DailyGoal';
 import QuickLinks from '@/components/dashboard/QuickLinks';
 import BadgeDisplay from '@/components/dashboard/BadgeDisplay';
-import ResumeCard from '@/components/dashboard/ResumeCard';
 import BadgeAwardModal from '@/components/ui/BadgeAwardModal';
 import { useAuth } from '@/context/AuthContext';
 import { Brain, Code2, Target, Trophy } from 'lucide-react';
@@ -112,7 +111,6 @@ export default function DashboardPage() {
                     </div>
                     <div className="space-y-4">
                         <StreakWidget streak={streak} />
-                        <ResumeCard user={user} />
                         <DailyGoal goals={[
                             {
                                 label: 'Aptitude Questions',
