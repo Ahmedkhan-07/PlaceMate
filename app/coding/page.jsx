@@ -185,11 +185,11 @@ export default function CodingPage() {
                             key={level}
                             onClick={() => setDifficulty(level)}
                             className={`px-4 py-2 rounded-md font-semibold capitalize transition-colors duration-200 text-sm ${difficulty === level
-                                    ? level === 'easy' ? 'bg-success text-white'
-                                        : level === 'medium' ? 'bg-warning text-white'
-                                            : level === 'hard' ? 'bg-danger text-white'
-                                                : 'bg-secondary text-white'
-                                    : 'bg-white dark:bg-gray-800 border border-border dark:border-gray-700 text-text-secondary dark:text-gray-400 hover:border-primary hover:text-primary'
+                                ? level === 'easy' ? 'bg-success text-white'
+                                    : level === 'medium' ? 'bg-warning text-white'
+                                        : level === 'hard' ? 'bg-danger text-white'
+                                            : 'bg-secondary text-white'
+                                : 'bg-white dark:bg-gray-800 border border-border dark:border-gray-700 text-text-secondary dark:text-gray-400 hover:border-primary hover:text-primary'
                                 }`}
                         >
                             {level}
@@ -213,7 +213,7 @@ export default function CodingPage() {
                                 value={customInput}
                                 onChange={e => setCustomInput(e.target.value)}
                                 placeholder="Enter input here e.g. 1 2 3 4 5"
-                                className="w-full h-24 px-3.5 py-2.5 rounded-md border border-border dark:border-gray-700 focus:border-primary outline-none font-mono text-sm resize-none bg-white dark:bg-gray-800 text-text-primary dark:text-gray-100"
+                                className="w-full h-24 px-3.5 py-2.5 rounded-md border border-gray-700 focus:border-primary outline-none font-mono text-sm resize-none bg-[#0d1117] text-gray-300 placeholder:text-gray-600"
                             />
                         </div>
 

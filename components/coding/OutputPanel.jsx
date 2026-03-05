@@ -3,8 +3,8 @@ import { CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 
 export default function OutputPanel({ output }) {
     if (!output) return (
-        <div className="border border-gray-200 dark:border-gray-700 rounded-xl bg-gray-50 p-4">
-            <p className="text-xs text-gray-400 font-mono">Run your code to see output here...</p>
+        <div className="border border-gray-700 rounded-xl bg-[#0d1117] p-4 text-gray-300">
+            <p className="text-xs font-mono">Run your code to see output here...</p>
         </div>
     );
 
@@ -12,8 +12,8 @@ export default function OutputPanel({ output }) {
     const hasError = exitCode !== 0 || stderr || error;
 
     return (
-        <div className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
-            <div className={`flex items-center gap-2 px-4 py-2.5 border-b ${hasError ? 'border-red-500/20 bg-red-500/5' : 'border-emerald-500/20 bg-emerald-500/5'}`}>
+        <div className="border border-gray-700 rounded-xl overflow-hidden">
+            <div className={`flex items-center gap-2 px-4 py-2.5 border-b ${hasError ? 'border-red-500/20 bg-red-950/20' : 'border-emerald-500/20 bg-emerald-950/20'}`}>
                 {hasError
                     ? <XCircle className="h-4 w-4 text-red-400" />
                     : <CheckCircle className="h-4 w-4 text-emerald-400" />
@@ -22,11 +22,11 @@ export default function OutputPanel({ output }) {
                     {hasError ? 'Runtime Error' : 'Success'} · Exit Code: {exitCode}
                 </span>
             </div>
-            <div className="p-4 bg-gray-50 font-mono text-sm space-y-3 max-h-48 overflow-auto">
+            <div className="p-4 bg-[#0d1117] text-gray-300 font-mono text-sm space-y-3 max-h-48 overflow-auto">
                 {stdout && (
                     <div>
-                        <p className="text-xs text-gray-400 mb-1">Output</p>
-                        <pre className="text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{stdout}</pre>
+                        <p className="text-xs text-gray-500 mb-1">Output</p>
+                        <pre className="whitespace-pre-wrap">{stdout}</pre>
                     </div>
                 )}
                 {stderr && (
