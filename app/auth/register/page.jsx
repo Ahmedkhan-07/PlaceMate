@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/context/ToastContext';
 
-const BRANCHES = ['CSE', 'IT', 'ECE', 'EEE', 'MECH', 'CIVIL', 'CHEM', 'MBA', 'MCA', 'Other'];
+const BRANCHES = ['CSE', 'CAI', 'IOT', 'CIVIL', 'MECH', 'EEE', 'ECE', 'MBA'];
 const YEARS = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
 
 export default function RegisterPage() {
@@ -101,7 +101,7 @@ export default function RegisterPage() {
                         <div className="grid grid-cols-3 gap-3">
                             <div className="input-group">
                                 <select value={form.branch} onChange={set('branch')} required className={form.branch ? 'has-value' : ''}>
-                                    <option value="">Branch</option>
+                                    <option value="">Select Branch</option>
                                     {BRANCHES.map(b => <option key={b} value={b}>{b}</option>)}
                                 </select>
                                 <label>Branch</label>

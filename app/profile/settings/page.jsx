@@ -5,7 +5,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/context/ToastContext';
 import { Camera, Save, User, GraduationCap, Link2, Trophy, Loader2 } from 'lucide-react';
 
-const BRANCHES = ['CSE', 'IT', 'ECE', 'EEE', 'MECH', 'CIVIL', 'CHEM', 'MBA', 'MCA', 'Other'];
+const BRANCHES = ['CSE', 'CAI', 'IOT', 'CIVIL', 'MECH', 'EEE', 'ECE', 'MBA'];
 const YEARS = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
 const SECTIONS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
@@ -40,13 +40,13 @@ function FloatInput({ label, value, onChange, type = 'text', readOnly = false, p
     );
 }
 
-function FloatSelect({ label, value, onChange, options, disabled }) {
+function FloatSelect({ label, value, onChange, options, disabled, placeholder = '' }) {
     return (
         <div className="input-group">
             <select value={value || ''} onChange={onChange} disabled={disabled}
                 className={value ? 'has-value' : ''}
                 style={{ background: disabled ? '#F8F9FA' : 'white', cursor: disabled ? 'not-allowed' : 'pointer' }}>
-                <option value=""></option>
+                <option value="">{placeholder}</option>
                 {options.map(o => <option key={o} value={o}>{o}</option>)}
             </select>
             <label>{label}</label>
@@ -233,7 +233,7 @@ export default function ProfileSettingsPage() {
                                 <label>College Code (e.g. JNTUH, VTU, GTU)</label>
                             </div>
                             <div className="grid grid-cols-2 gap-4">
-                                <FloatSelect label="Branch" value={form.branch} onChange={set('branch')} options={BRANCHES} />
+                                <FloatSelect label="Branch" value={form.branch} onChange={set('branch')} options={BRANCHES} placeholder="Select Branch" />
                                 <FloatSelect label="Section" value={form.section} onChange={set('section')} options={SECTIONS} />
                             </div>
                             <FloatInput label="LeetCode Rank (enter your LC ranking number)" value={form.leetcodeRank} onChange={set('leetcodeRank')} placeholder="e.g. 45231" />

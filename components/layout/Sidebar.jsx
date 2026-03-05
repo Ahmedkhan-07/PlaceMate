@@ -5,7 +5,7 @@ import { useAuth } from '@/context/AuthContext';
 import {
     LayoutDashboard, Brain, Code2, Wrench, BookOpen,
     Target, Rocket, Map, Building2, Trophy, Award,
-    Settings, LogOut, ChevronLeft, ChevronRight
+    Settings, LogOut, ChevronLeft, ChevronRight, Briefcase
 } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -18,6 +18,7 @@ const NAV_ITEMS = [
     { href: '/mock-drive', icon: Rocket, label: 'Mock Drive' },
     { href: '/roadmap', icon: Map, label: 'Roadmap' },
     { href: '/companies', icon: Building2, label: 'Companies' },
+    { href: '/company-prep', icon: Briefcase, label: 'Company Prep' },
     { href: '/leaderboard', icon: Trophy, label: 'Leaderboard' },
     { href: '/certificates', icon: Award, label: 'Certificates' },
 ];
