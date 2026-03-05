@@ -10,7 +10,7 @@ export default function AppLayout({ children }) {
     const { user } = useAuth();
 
     return (
-        <div className="min-h-screen bg-bg">
+        <div className="min-h-screen bg-background">
             <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
             <Navbar collapsed={collapsed} />
             <main

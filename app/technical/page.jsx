@@ -74,7 +74,8 @@ export default function TechnicalPage() {
         <AppLayout>
             <div className="max-w-2xl mx-auto space-y-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-white">Technical MCQs</h1>
+                    <h1 className="text-2xl font-bold text-text-primary">Technical MCQs</h1>
+                    <p className="text-text-secondary text-sm mt-1">Practice CS fundamentals — DSA, OS, DBMS, CN</p>
                     <p className="text-gray-500 text-sm">CS fundamentals, interview-ready questions</p>
                 </div>
 
@@ -104,7 +105,7 @@ export default function TechnicalPage() {
                             />
                             <button
                                 onClick={handleNext}
-                                className="w-full py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold rounded-xl transition-colors"
+                                className="btn-primary w-full py-3"
                             >
                                 {!showResult ? 'Submit' : currentIdx < questions.length - 1 ? 'Next' : 'View Results'}
                             </button>

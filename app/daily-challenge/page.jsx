@@ -51,8 +51,8 @@ export default function DailyChallengePage() {
             <div className="max-w-2xl mx-auto space-y-6">
                 <div className="flex items-center gap-3">
                     <div>
-                        <h1 className="text-2xl font-bold text-white">Daily Challenge</h1>
-                        <p className="text-gray-500 text-sm flex items-center gap-1.5 mt-1">
+                        <h1 className="text-2xl font-bold text-text-primary">Daily challenge</h1>
+                        <p className="text-text-secondary text-sm flex items-center gap-1.5 mt-1">
                             <Calendar className="h-4 w-4" />
                             {format(new Date(), 'EEEE, MMMM d yyyy')}
                         </p>
@@ -60,16 +60,16 @@ export default function DailyChallengePage() {
                 </div>
 
                 {loading ? (
-                    <div className="text-center py-20 text-gray-500">Loading today&apos;s challenge...</div>
+                    <div className="text-center py-20 text-text-secondary">Loading today&apos;s challenge...</div>
                 ) : !challenge ? (
-                    <div className="text-center py-20 text-gray-500">No challenge available today. Check back later!</div>
+                    <div className="text-center py-20 text-text-secondary">No challenge available today. Check back later!</div>
                 ) : (
                     <Card>
                         <CardHeader>
                             <div className="flex items-center justify-between">
-                                <span className="text-sm font-semibold text-gray-800">{challenge.topic}</span>
+                                <span className="text-sm font-semibold text-text-primary">{challenge.topic}</span>
                                 {submitted && (
-                                    <div className="flex items-center gap-1.5 text-emerald-400 text-sm">
+                                    <div className="flex items-center gap-1.5 text-success text-sm">
                                         <CheckCircle className="h-4 w-4" /> Completed
                                     </div>
                                 )}
@@ -86,7 +86,7 @@ export default function DailyChallengePage() {
                                 correctAnswer={challenge.correctAnswer}
                             />
                             {!submitted && (
-                                <Button onClick={submit} fullWidth disabled={!answer}>Submit Answer</Button>
+                                <Button onClick={submit} fullWidth disabled={!answer}>Submit answer</Button>
                             )}
                         </CardBody>
                     </Card>

@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ───────────────────────────────────────────
+   CSS Variables
+─────────────────────────────────────────── */
 :root {
   --bg: #F8F9FA;
   --surface: #FFFFFF;
@@ -13,13 +16,26 @@
   --sidebar: #1E3A5F;
   --sidebar-hover: #2D5086;
   --success: #16A34A;
+  --success-dark: #15803D;
   --warning: #D97706;
   --danger: #DC2626;
+  --danger-dark: #B91C1C;
   --text-primary: #1E293B;
   --text-secondary: #64748B;
   --border: #E2E8F0;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 8px 30px rgba(0, 0, 0, 0.10);
+  --shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
+/* ───────────────────────────────────────────
+   Reset
+─────────────────────────────────────────── */
 * {
   margin: 0;
   padding: 0;
@@ -38,7 +54,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar */
+/* ───────────────────────────────────────────
+   Scrollbar
+─────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -58,7 +76,93 @@ body {
   background: #94a3b8;
 }
 
-/* Floating Label Input */
+/* ───────────────────────────────────────────
+   Animations
+─────────────────────────────────────────── */
+@keyframes slideUp {
+  from {
+    transform: translateY(60px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+
+  to {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes flip-in {
+  from {
+    transform: rotateY(90deg);
+  }
+
+  to {
+    transform: rotateY(0deg);
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-flip-in {
+  animation: flip-in 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Section reveal via IntersectionObserver */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ───────────────────────────────────────────
+   Floating Label Input
+─────────────────────────────────────────── */
 .input-group {
   position: relative;
 }
@@ -69,14 +173,15 @@ body {
   width: 100%;
   padding: 22px 14px 8px 14px;
   border: 1.5px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   font-size: 14px;
   font-family: 'Inter', sans-serif;
   background: white;
   color: var(--text-primary);
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease;
   outline: none;
   appearance: none;
+  box-shadow: none;
 }
 
 .input-group select {
@@ -88,7 +193,7 @@ body {
 .input-group select:focus,
 .input-group textarea:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  box-shadow: none;
 }
 
 .input-group label {
@@ -129,7 +234,98 @@ body {
   color: transparent;
 }
 
-/* Gradient text */
+/* ───────────────────────────────────────────
+   Buttons
+─────────────────────────────────────────── */
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: none;
+  letter-spacing: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-dark);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: var(--danger-dark);
+}
+
+/* ───────────────────────────────────────────
+   Cards
+─────────────────────────────────────────── */
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 24px;
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Legacy card-hover — shadow only, no lift */
+.card-hover {
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ───────────────────────────────────────────
+   Gradient text (decorative only)
+─────────────────────────────────────────── */
 .gradient-text {
   background: linear-gradient(135deg, #2563EB, #6366F1);
   -webkit-background-clip: text;
@@ -137,47 +333,9 @@ body {
   background-clip: text;
 }
 
-/* Card hover lift */
-.card-hover {
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-}
-
-/* Button styles */
-.btn-primary {
-  background: linear-gradient(135deg, #2563EB, #6366F1);
-  color: white;
-  border: none;
-  padding: 10px 24px;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
-  letter-spacing: 0.01em;
-}
-
-.btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
-}
-
-.btn-primary:active {
-  transform: scale(0.97);
-}
-
-.btn-primary:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* Toast */
+/* ───────────────────────────────────────────
+   Toast
+─────────────────────────────────────────── */
 .toast-container {
   position: fixed;
   bottom: 80px;
@@ -188,7 +346,9 @@ body {
   gap: 8px;
 }
 
-/* Flip card */
+/* ───────────────────────────────────────────
+   Flip card (flashcards)
+─────────────────────────────────────────── */
 .flip-card {
   perspective: 1000px;
 }
@@ -212,23 +372,36 @@ body {
   height: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
 }
 
 .flip-card-back {
   transform: rotateY(180deg);
 }
 
-/* Recharts custom styles */
-.recharts-wrapper {
-  font-family: 'Inter', sans-serif !important;
+/* ───────────────────────────────────────────
+   Sidebar
+─────────────────────────────────────────── */
+.sidebar-link {
+  transition: all 0.2s ease;
 }
 
+.sidebar-link.active {
+  background: linear-gradient(135deg, #2563EB, #6366F1);
+  color: white !important;
+}
+
+/* ───────────────────────────────────────────
+   Recharts
+─────────────────────────────────────────── */
+.recharts-wrapper,
 .recharts-tooltip-wrapper {
   font-family: 'Inter', sans-serif !important;
 }
 
-/* Streak calendar dot */
+/* ───────────────────────────────────────────
+   Streak calendar
+─────────────────────────────────────────── */
 .streak-dot {
   width: 12px;
   height: 12px;
@@ -240,65 +413,18 @@ body {
   transform: scale(1.3);
 }
 
-/* Loading shimmer */
+/* ───────────────────────────────────────────
+   Loading shimmer
+─────────────────────────────────────────── */
 .shimmer {
   background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s linear infinite;
 }
 
-/* Sidebar active pill */
-.sidebar-link {
-  transition: all 0.2s ease;
-}
-
-.sidebar-link.active {
-  background: linear-gradient(135deg, #2563EB, #6366F1);
-  color: white !important;
-}
-
-/* Score gauge */
-.gauge-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Badge glow effect */
-.badge-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-/* Confetti particle */
-.confetti-particle {
-  position: fixed;
-  width: 10px;
-  height: 10px;
-  border-radius: 2px;
-  pointer-events: none;
-  z-index: 9999;
-  animation: confetti-fall 2s ease-out forwards;
-}
-
-@keyframes confetti-fall {
-  0% {
-    transform: translateY(-100px) rotate(0deg);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(100vh) rotate(720deg);
-    opacity: 0;
-  }
-}
-
-/* Circular progress */
-.circular-progress {
-  transform: rotate(-90deg);
-}
-
-/* Profile picture upload overlay */
+/* ───────────────────────────────────────────
+   Avatar / Profile picture
+─────────────────────────────────────────── */
 .avatar-overlay {
   position: absolute;
   inset: 0;
@@ -316,23 +442,104 @@ body {
   opacity: 1;
 }
 
-/* Glass effect */
+/* ───────────────────────────────────────────
+   Glass
+─────────────────────────────────────────── */
 .glass {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
-/* Search dropdown */
+/* ───────────────────────────────────────────
+   Search dropdown
+─────────────────────────────────────────── */
 .search-dropdown {
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
   right: 0;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card-hover);
   border: 1px solid var(--border);
   overflow: hidden;
   z-index: 100;
+}
+
+/* ───────────────────────────────────────────
+   Confetti
+─────────────────────────────────────────── */
+.confetti-particle {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 9999;
+  animation: confetti-fall 2s ease-out forwards;
+}
+
+/* ───────────────────────────────────────────
+   Circular progress gauge
+─────────────────────────────────────────── */
+.circular-progress {
+  transform: rotate(-90deg);
+}
+
+.gauge-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ───────────────────────────────────────────
+   Chips / Tags
+─────────────────────────────────────────── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ───────────────────────────────────────────
+   Drawer / Side panel
+─────────────────────────────────────────── */
+.drawer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 420px;
+  background: white;
+  box-shadow: -4px 0 40px rgba(0, 0, 0, 0.12);
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 50;
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-accent {
+  height: 4px;
+  background: linear-gradient(90deg, #2563EB, #6366F1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.drawer-footer {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
 }

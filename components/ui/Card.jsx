@@ -1,13 +1,12 @@
 'use client';
 
-export default function Card({ children, className = '', hover = false, glow = false, onClick }) {
+export default function Card({ children, className = '', hover = false, onClick }) {
     return (
         <div
             onClick={onClick}
             className={`
-        bg-white border border-gray-200 rounded-xl shadow-card
-        ${hover ? 'hover:border-emerald-500/50 hover:shadow-card-hover transition-all duration-200 cursor-pointer' : ''}
-        ${glow ? 'shadow-lg shadow-emerald-500/10' : ''}
+        bg-white border border-border rounded-xl shadow-card
+        ${hover ? 'hover:shadow-card-hover transition-shadow duration-200 cursor-pointer' : ''}
         ${className}
       `}
         >
@@ -18,7 +17,7 @@ export default function Card({ children, className = '', hover = false, glow = f
 
 export function CardHeader({ children, className = '' }) {
     return (
-        <div className={`px-6 py-4 border-b border-gray-200 ${className}`}>
+        <div className={`px-6 py-4 border-b border-border ${className}`}>
             {children}
         </div>
     );
@@ -34,7 +33,7 @@ export function CardBody({ children, className = '' }) {
 
 export function CardFooter({ children, className = '' }) {
     return (
-        <div className={`px-6 py-4 border-t border-gray-200 ${className}`}>
+        <div className={`px-6 py-4 border-t border-border ${className}`}>
             {children}
         </div>
     );

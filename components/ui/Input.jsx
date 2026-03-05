@@ -3,6 +3,7 @@ import { forwardRef, useState } from 'react';
 
 const Input = forwardRef(({
     label,
+    required,
     error,
     icon: Icon,
     iconRight,
@@ -14,10 +15,15 @@ const Input = forwardRef(({
     const hasValue = props.value !== undefined ? Boolean(props.value) : undefined;
 
     return (
-        <div className={`relative ${className}`}>
+        <div className={`${className}`}>
+            {label && (
+                <label className="block text-[13px] font-medium text-text-secondary mb-1.5">
+                    {label}{required && <span className="text-danger ml-0.5">*</span>}
+                </label>
+            )}
             <div className="relative">
                 {Icon && (
-                    <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+                    <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
                         <Icon className="h-4 w-4" />
                     </div>
                 )}
@@ -26,90 +32,77 @@ const Input = forwardRef(({
                     type={type}
                     onFocus={() => setFocused(true)}
                     onBlur={() => setFocused(false)}
-                    placeholder={label ? ' ' : props.placeholder}
+                    placeholder={props.placeholder || ' '}
                     className={`
-            w-full bg-white border rounded-lg text-gray-900 text-sm
-            placeholder-gray-400 transition-all duration-200
-            focus:outline-none focus:ring-2
+            w-full bg-white border rounded-md text-text-primary text-sm
+            placeholder:text-slate-400 transition-colors duration-200
+            focus:outline-none focus:border-primary
             ${error
-                            ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
-                            : 'border-gray-300 focus:border-emerald-600 focus:ring-emerald-600/20'
+                            ? 'border-danger focus:border-danger'
+                            : 'border-border'
                         }
-            ${label ? 'pt-5 pb-2' : 'py-2.5'}
-            ${Icon ? 'pl-10' : 'pl-4'}
-            ${iconRight ? 'pr-10' : 'pr-4'}
+            ${Icon ? 'pl-10' : 'px-3.5'}
+            ${iconRight ? 'pr-10' : ''}
+            py-2.5
           `}
                     {...props}
                 />
-                {label && (
-                    <label
-                        className={`
-              absolute left-${Icon ? '10' : '4'} transition-all duration-200 pointer-events-none font-medium
-              ${(focused || hasValue || props.value)
-                                ? 'top-1.5 text-xs text-emerald-700'
-                                : 'top-1/2 -translate-y-1/2 text-sm text-gray-400'
-                            }
-            `}
-                        style={{ left: Icon ? '2.5rem' : '1rem' }}
-                    >
-                        {label}
-                    </label>
-                )}
                 {iconRight && (
-                    <div className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+                    <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400">
                         {iconRight}
                     </div>
                 )}
             </div>
-            {error && (
-                <p className="mt-1 text-xs text-red-500">{error}</p>
-            )}
+            {error && <p className="mt-1 text-[12px] text-danger">{error}</p>}
         </div>
     );
 });
 
 Input.displayName = 'Input';
 
-export function Textarea({ label, error, className = '', ...props }) {
+export function Textarea({ label, required, error, className = '', ...props }) {
     return (
-        <div className={`relative ${className}`}>
+        <div className={className}>
+            {label && (
+                <label className="block text-[13px] font-medium text-text-secondary mb-1.5">
+                    {label}{required && <span className="text-danger ml-0.5">*</span>}
+                </label>
+            )}
             <textarea
-                placeholder={label || props.placeholder}
+                placeholder={props.placeholder || ' '}
                 className={`
-          w-full bg-white border rounded-lg text-gray-900 text-sm px-4 py-2.5
-          placeholder-gray-400 transition-all duration-200 resize-none
-          focus:outline-none focus:ring-2
-          ${error
-                        ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
-                        : 'border-gray-300 focus:border-emerald-600 focus:ring-emerald-600/20'
-                    }
+          w-full bg-white border rounded-md text-text-primary text-sm px-3.5 py-2.5
+          placeholder:text-slate-400 transition-colors duration-200 resize-none
+          focus:outline-none focus:border-primary
+          ${error ? 'border-danger focus:border-danger' : 'border-border'}
         `}
                 {...props}
             />
-            {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
+            {error && <p className="mt-1 text-[12px] text-danger">{error}</p>}
         </div>
     );
 }
 
-export function Select({ label, error, children, className = '', ...props }) {
+export function Select({ label, required, error, children, className = '', ...props }) {
     return (
-        <div className={`${className}`}>
-            {label && <label className="block text-sm font-medium text-gray-700 mb-1.5">{label}</label>}
+        <div className={className}>
+            {label && (
+                <label className="block text-[13px] font-medium text-text-secondary mb-1.5">
+                    {label}{required && <span className="text-danger ml-0.5">*</span>}
+                </label>
+            )}
             <select
                 className={`
-          w-full bg-white border rounded-lg text-gray-900 text-sm px-4 py-2.5
-          transition-all duration-200 cursor-pointer
-          focus:outline-none focus:ring-2
-          ${error
-                        ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
-                        : 'border-gray-300 focus:border-emerald-600 focus:ring-emerald-600/20'
-                    }
+          w-full bg-white border rounded-md text-text-primary text-sm px-3.5 py-2.5
+          transition-colors duration-200 cursor-pointer appearance-none
+          focus:outline-none focus:border-primary
+          ${error ? 'border-danger focus:border-danger' : 'border-border'}
         `}
                 {...props}
             >
                 {children}
             </select>
-            {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
+            {error && <p className="mt-1 text-[12px] text-danger">{error}</p>}
         </div>
     );
 }

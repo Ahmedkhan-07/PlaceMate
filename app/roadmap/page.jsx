@@ -52,11 +52,11 @@ const ROADMAP = [
 ];
 
 const colorMap = {
-    indigo: { dot: 'bg-emerald-700', border: 'border-emerald-600/30', bg: 'bg-emerald-50', text: 'text-emerald-700' },
-    emerald: { dot: 'bg-emerald-500', border: 'border-emerald-500/30', bg: 'bg-emerald-500/10', text: 'text-emerald-400' },
-    amber: { dot: 'bg-amber-500', border: 'border-amber-500/30', bg: 'bg-amber-500/10', text: 'text-amber-400' },
-    sky: { dot: 'bg-sky-500', border: 'border-sky-500/30', bg: 'bg-sky-500/10', text: 'text-sky-400' },
-    purple: { dot: 'bg-purple-500', border: 'border-purple-500/30', bg: 'bg-purple-500/10', text: 'text-purple-400' },
+    indigo: { dot: 'bg-primary', border: 'border-primary/20', bg: 'bg-blue-50', text: 'text-primary' },
+    emerald: { dot: 'bg-blue-500', border: 'border-blue-500/20', bg: 'bg-blue-50', text: 'text-blue-600' },
+    amber: { dot: 'bg-amber-500', border: 'border-amber-500/20', bg: 'bg-amber-50', text: 'text-amber-600' },
+    sky: { dot: 'bg-sky-500', border: 'border-sky-500/20', bg: 'bg-sky-50', text: 'text-sky-600' },
+    purple: { dot: 'bg-purple-500', border: 'border-purple-500/20', bg: 'bg-purple-50', text: 'text-purple-600' },
 };
 
 export default function RoadmapPage() {
@@ -64,13 +64,13 @@ export default function RoadmapPage() {
         <AppLayout>
             <div className="max-w-2xl mx-auto space-y-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-white">Learning Roadmap</h1>
-                    <p className="text-gray-500 text-sm">Your step-by-step path to placement success</p>
+                    <h1 className="text-2xl font-bold text-text-primary">Learning roadmap</h1>
+                    <p className="text-text-secondary text-sm">Your step-by-step path to placement success</p>
                 </div>
 
                 <div className="relative">
                     {/* Vertical line */}
-                    <div className="absolute left-5 top-6 bottom-6 w-0.5 bg-gray-200" />
+                    <div className="absolute left-5 top-6 bottom-6 w-0.5 bg-border" />
 
                     <div className="space-y-6">
                         {ROADMAP.map((section, si) => {
@@ -86,10 +86,10 @@ export default function RoadmapPage() {
                                             {section.steps.map((step, i) => (
                                                 <div key={i} className="flex items-center gap-2.5">
                                                     {step.done
-                                                        ? <CheckCircle className="h-4 w-4 text-emerald-400 shrink-0" />
-                                                        : <Circle className="h-4 w-4 text-gray-300 shrink-0" />
+                                                        ? <CheckCircle className="h-4 w-4 text-success shrink-0" />
+                                                        : <Circle className="h-4 w-4 text-slate-300 shrink-0" />
                                                     }
-                                                    <span className={`text-sm ${step.done ? 'text-emerald-300 line-through opacity-70' : 'text-gray-700'}`}>
+                                                    <span className={`text-sm ${step.done ? 'text-text-secondary line-through' : 'text-text-primary'}`}>
                                                         {step.label}
                                                     </span>
                                                 </div>
@@ -102,7 +102,7 @@ export default function RoadmapPage() {
                     </div>
                 </div>
 
-                <div className="text-center py-4 text-xs text-gray-400">
+                <div className="text-center py-4 text-xs text-text-secondary">
                     Complete activities on PlaceMate to unlock achievements and progress through the roadmap
                 </div>
             </div>

@@ -11,8 +11,8 @@ const activityIcons = {
 };
 
 const activityColors = {
-    aptitude: 'text-emerald-700 bg-emerald-50',
-    coding: 'text-emerald-700 bg-emerald-50',
+    aptitude: 'text-blue-700 bg-blue-50',
+    coding: 'text-indigo-700 bg-indigo-50',
     technical: 'text-amber-700 bg-amber-50',
     flashcard: 'text-purple-700 bg-purple-50',
     mock: 'text-sky-700 bg-sky-50',
@@ -22,11 +22,11 @@ export default function RecentActivity({ activities = [] }) {
     const empty = activities.length === 0;
 
     return (
-        <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-card">
-            <h3 className="text-sm font-semibold text-gray-800 mb-4">Recent Activity</h3>
+        <div className="bg-white border border-border rounded-xl p-5 shadow-card">
+            <h3 className="text-sm font-semibold text-text-primary mb-4">Recent activity</h3>
             {empty ? (
                 <div className="text-center py-8">
-                    <p className="text-gray-400 text-sm">No activity yet. Start practicing!</p>
+                    <p className="text-text-secondary text-sm">No activity yet. Start practicing!</p>
                 </div>
             ) : (
                 <div className="space-y-3">
@@ -39,8 +39,8 @@ export default function RecentActivity({ activities = [] }) {
                                     <Icon className="h-4 w-4" />
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <p className="text-sm text-gray-800 truncate">{activity.title}</p>
-                                    <p className="text-xs text-gray-400">
+                                    <p className="text-sm text-text-primary truncate">{activity.title}</p>
+                                    <p className="text-xs text-text-secondary">
                                         Score: {activity.score} · {activity.createdAt
                                             ? formatDistanceToNow(new Date(activity.createdAt), { addSuffix: true })
                                             : 'Recently'}

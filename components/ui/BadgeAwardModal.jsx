@@ -92,8 +92,8 @@ export default function BadgeAwardModal({ badges, onClose }) {
                     <span className="text-5xl">{meta.emoji}</span>
                 </div>
 
-                <div className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: meta.color }}>
-                    Badge Unlocked! 🎉
+                <div className="text-xs font-semibold mb-2" style={{ color: meta.color }}>
+                    Badge unlocked! 🎉
                 </div>
 
                 <h2 className="text-2xl font-black text-text-primary mb-2">{badge}</h2>
@@ -112,9 +112,8 @@ export default function BadgeAwardModal({ badges, onClose }) {
                 <button
                     onClick={handleNext}
                     className="btn-primary w-full py-3"
-                    style={{ background: meta.gradient }}
                 >
-                    {current < badges.length - 1 ? 'Next Badge →' : 'Awesome! 🎉'}
+                    {current < badges.length - 1 ? 'Next badge →' : 'Awesome! 🎉'}
                 </button>
             </div>
         </div>

@@ -165,8 +165,8 @@ export default function CodingPage() {
             <div className="space-y-4">
                 <div className="flex items-center justify-between flex-wrap gap-3">
                     <div>
-                        <h1 className="text-2xl font-bold text-white">Coding Practice</h1>
-                        <p className="text-gray-500 text-sm">AI-generated coding problems with live execution</p>
+                        <h1 className="text-2xl font-bold text-text-primary">Coding practice</h1>
+                        <p className="text-text-secondary text-sm">AI-generated coding problems with live execution</p>
                     </div>
                     <div className="flex items-center gap-3">
                         <Select value={language} onChange={e => handleLangChange(e.target.value)} className="w-36">
@@ -184,12 +184,12 @@ export default function CodingPage() {
                         <button
                             key={level}
                             onClick={() => setDifficulty(level)}
-                            className={`px-4 py-2 rounded-xl font-semibold capitalize transition-all duration-200 ${difficulty === level
-                                ? level === 'easy' ? 'bg-green-500 text-white shadow-md'
-                                    : level === 'medium' ? 'bg-yellow-500 text-white shadow-md'
-                                        : level === 'hard' ? 'bg-red-500 text-white shadow-md'
-                                            : 'bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-md'
-                                : 'bg-white border border-gray-200 text-gray-500 hover:border-purple-400'
+                            className={`px-4 py-2 rounded-md font-semibold capitalize transition-colors duration-200 text-sm ${difficulty === level
+                                    ? level === 'easy' ? 'bg-success text-white'
+                                        : level === 'medium' ? 'bg-warning text-white'
+                                            : level === 'hard' ? 'bg-danger text-white'
+                                                : 'bg-secondary text-white'
+                                    : 'bg-white border border-border text-text-secondary hover:border-primary hover:text-primary'
                                 }`}
                         >
                             {level}
@@ -199,7 +199,7 @@ export default function CodingPage() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     {/* Left: Problem */}
-                    <div className="bg-white border border-gray-200 rounded-xl p-5 h-[600px] overflow-auto">
+                    <div className="bg-white border border-border rounded-xl p-5 h-[600px] overflow-auto">
                         <ProblemStatement problem={problem} />
                     </div>
                     {/* Right: Editor + Test + Submit */}
@@ -208,12 +208,12 @@ export default function CodingPage() {
 
                         {/* Custom stdin input */}
                         <div>
-                            <label className="text-sm font-medium text-gray-400 mb-1 block">Custom Input (stdin)</label>
+                            <label className="text-[13px] font-medium text-text-secondary mb-1.5 block">Custom input (stdin)</label>
                             <textarea
                                 value={customInput}
                                 onChange={e => setCustomInput(e.target.value)}
                                 placeholder="Enter input here e.g. 1 2 3 4 5"
-                                className="w-full h-24 px-4 py-3 rounded-xl border border-gray-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 outline-none font-mono text-sm resize-none bg-white text-gray-800"
+                                className="w-full h-24 px-3.5 py-2.5 rounded-md border border-border focus:border-primary outline-none font-mono text-sm resize-none bg-white text-text-primary"
                             />
                         </div>
 
@@ -222,16 +222,16 @@ export default function CodingPage() {
                             <button
                                 onClick={handleRun}
                                 disabled={running || !code}
-                                className="px-6 py-2 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-500 to-blue-600 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="btn-primary px-6 py-2 disabled:opacity-60 disabled:cursor-not-allowed"
                             >
                                 {running ? 'Running...' : '▶ Run'}
                             </button>
                             <button
                                 onClick={handleSubmit}
                                 disabled={submitting || !problem || !code}
-                                className="px-6 py-2 rounded-xl font-semibold text-white bg-gradient-to-r from-green-500 to-green-600 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="bg-success hover:bg-success-dark text-white font-semibold px-6 py-2 rounded-md transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
                             >
-                                {submitting ? 'Submitting...' : 'Submit Solution'}
+                                {submitting ? 'Submitting...' : 'Submit solution'}
                             </button>
                         </div>
 
@@ -243,7 +243,7 @@ export default function CodingPage() {
                         {/* Test Results Panel */}
                         {showResults && (
                             <div className="mt-4 space-y-3">
-                                <h3 className="font-semibold text-white text-lg">Test Results</h3>
+                                <h3 className="font-semibold text-text-primary text-lg">Test results</h3>
                                 {testResults.map((result, index) => (
                                     <div
                                         key={index}

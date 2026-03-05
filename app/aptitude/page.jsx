@@ -87,8 +87,8 @@ export default function AptitudePage() {
         <AppLayout>
             <div className="max-w-2xl mx-auto space-y-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-white">Aptitude Practice</h1>
-                    <p className="text-gray-500 text-sm mt-1">AI-generated MCQs across every topic</p>
+                    <h1 className="text-2xl font-bold text-text-primary">Aptitude practice</h1>
+                    <p className="text-text-secondary text-sm mt-1">AI-generated MCQs across every topic</p>
                 </div>
 
                 <Card>
@@ -115,9 +115,9 @@ export default function AptitudePage() {
                                 />
                                 <button
                                     onClick={handleNext}
-                                    className="w-full py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold rounded-xl transition-colors"
+                                    className="btn-primary w-full py-3"
                                 >
-                                    {!showResult ? 'Submit Answer' : currentIdx < questions.length - 1 ? 'Next Question' : 'See Results'}
+                                    {!showResult ? 'Submit answer' : currentIdx < questions.length - 1 ? 'Next question' : 'See results'}
                                 </button>
                             </CardBody>
                         </>

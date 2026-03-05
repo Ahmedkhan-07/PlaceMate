@@ -4,6 +4,7 @@ import AppLayout from '@/components/layout/AppLayout';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/context/ToastContext';
 import { Camera, Save, User, GraduationCap, Link2, Trophy, Loader2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const BRANCHES = ['CSE', 'CAI', 'IOT', 'CIVIL', 'MECH', 'EEE', 'ECE', 'MBA'];
 const YEARS = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
@@ -69,6 +70,7 @@ function RankBadge({ label, value, icon }) {
 export default function ProfileSettingsPage() {
     const { user, setUser } = useAuth();
     const toast = useToast();
+    const router = useRouter();
     const fileRef = useRef();
     const [form, setForm] = useState({
         name: '', bio: '', year: '', rollNumber: '', leetcodeRank: '',
@@ -154,7 +156,12 @@ export default function ProfileSettingsPage() {
             const data = await res.json();
             if (!res.ok) throw new Error(data.message || 'Failed to save');
             setUser?.(data.user);
-            toast.success('Profile updated! ✅');
+            toast.success('Profile saved! ✅');
+            // Navigate back to the user's public profile
+            const username = data.user?.username || user?.username;
+            if (username) {
+                router.push(`/profile/${username}`);
+            }
         } catch (ex) {
             toast.error(ex.message || 'Failed to save');
         } finally {
