@@ -51,7 +51,7 @@ export default function RegisterPage() {
                 <p className="text-white/60 text-base">Join thousands of students preparing for placements with AI-powered practice.</p>
                 <div className="mt-8 grid grid-cols-2 gap-3">
                     {[['🎯', 'Aptitude'], ['💻', 'Coding'], ['🔧', 'Technical'], ['📜', 'Certificates'], ['🏆', 'Leaderboard'], ['🚀', 'Mock Drive']].map(([icon, label]) => (
-                        <div key={label} className="flex items-center gap-2 text-white/70 text-sm bg-white/5 rounded-xl px-3 py-2">
+                        <div key={label} className="flex items-center gap-2 text-white/70 text-sm bg-white dark:bg-gray-800/5 rounded-xl px-3 py-2">
                             <span>{icon}</span><span>{label}</span>
                         </div>
                     ))}

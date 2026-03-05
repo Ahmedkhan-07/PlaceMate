@@ -1,14 +1,14 @@
 'use client';
 
 const variants = {
-    default: 'bg-gray-100 text-gray-600',
+    default: 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400',
     primary: 'bg-emerald-100 text-emerald-800 border border-emerald-200',
     success: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
-    warning: 'bg-amber-50 text-amber-700 border border-amber-200',
-    danger: 'bg-red-50 text-red-700 border border-red-200',
+    warning: 'bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border border-amber-200',
+    danger: 'bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 border border-red-200',
     info: 'bg-sky-50 text-sky-700 border border-sky-200',
     purple: 'bg-purple-50 text-purple-700 border border-purple-200',
-    gold: 'bg-amber-50 text-amber-700 border border-amber-200',
+    gold: 'bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border border-amber-200',
 };
 
 const sizes = {

@@ -10,7 +10,7 @@ export default function AppLayout({ children }) {
     const { user } = useAuth();
 
     return (
-        <div className="min-h-screen bg-background">
+        <div className="min-h-screen bg-background dark:bg-[#0F172A] dark:bg-[#0F172A]">
             <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
             <Navbar collapsed={collapsed} />
             <main
@@ -27,7 +27,7 @@ export default function AppLayout({ children }) {
                     href={process.env.NEXT_PUBLIC_DEVELOPER_LINKEDIN}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="fixed bottom-2.5 right-4 z-40 text-xs text-slate-400 hover:text-primary transition-colors hidden sm:block"
+                    className="fixed bottom-2.5 right-4 z-40 text-xs text-slate-400 dark:text-gray-500 hover:text-primary transition-colors hidden sm:block"
                     style={{ fontSize: '11px' }}
                 >
                     Connect the Developer 🔗

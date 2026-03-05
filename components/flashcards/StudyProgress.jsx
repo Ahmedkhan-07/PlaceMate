@@ -5,8 +5,8 @@ export default function StudyProgress({ current, total }) {
     return (
         <div className="space-y-2">
             <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Progress</span>
-                <span className="text-gray-700 font-medium">{current} / {total} cards</span>
+                <span className="text-gray-500 dark:text-gray-400">Progress</span>
+                <span className="text-gray-700 dark:text-gray-300 font-medium">{current} / {total} cards</span>
             </div>
             <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                 <div

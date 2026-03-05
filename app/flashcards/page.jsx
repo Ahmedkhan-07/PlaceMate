@@ -50,9 +50,9 @@ export default function FlashcardsPage() {
         <AppLayout>
             <div className="max-w-xl mx-auto space-y-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-text-primary">Flashcards</h1>
-                    <p className="text-text-secondary text-sm mt-1">Review key concepts with flip cards</p>
-                    <p className="text-gray-500 text-sm">AI-generated flip cards for active recall</p>
+                    <h1 className="text-2xl font-bold text-text-primary dark:text-gray-100">Flashcards</h1>
+                    <p className="text-text-secondary dark:text-gray-400 text-sm mt-1">Review key concepts with flip cards</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">AI-generated flip cards for active recall</p>
                 </div>
 
                 {phase === 'select' && (

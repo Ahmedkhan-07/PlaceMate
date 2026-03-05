@@ -82,10 +82,10 @@ export default function DashboardPage() {
             <div className="space-y-6">
                 {/* Header */}
                 <div>
-                    <h1 className="text-2xl font-bold text-text-primary">
+                    <h1 className="text-2xl font-bold text-text-primary dark:text-gray-100">
                         Welcome back, {user?.name?.split(' ')[0] || 'Champ'}! 👋
                     </h1>
-                    <p className="text-text-secondary text-sm mt-1">
+                    <p className="text-text-secondary dark:text-gray-400 text-sm mt-1">
                         {scores.length === 0 ? "Start your first session to see your stats." : `You've completed ${scores.length} sessions so far. Keep going!`}
                     </p>
                 </div>

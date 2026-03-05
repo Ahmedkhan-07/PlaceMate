@@ -52,9 +52,9 @@ const ROADMAP = [
 ];
 
 const colorMap = {
-    indigo: { dot: 'bg-primary', border: 'border-primary/20', bg: 'bg-blue-50', text: 'text-primary' },
-    emerald: { dot: 'bg-blue-500', border: 'border-blue-500/20', bg: 'bg-blue-50', text: 'text-blue-600' },
-    amber: { dot: 'bg-amber-500', border: 'border-amber-500/20', bg: 'bg-amber-50', text: 'text-amber-600' },
+    indigo: { dot: 'bg-primary', border: 'border-primary/20', bg: 'bg-blue-50 dark:bg-blue-900/30', text: 'text-primary' },
+    emerald: { dot: 'bg-blue-500', border: 'border-blue-500/20', bg: 'bg-blue-50 dark:bg-blue-900/30', text: 'text-blue-600' },
+    amber: { dot: 'bg-amber-500', border: 'border-amber-500/20', bg: 'bg-amber-50 dark:bg-amber-900/30', text: 'text-amber-600' },
     sky: { dot: 'bg-sky-500', border: 'border-sky-500/20', bg: 'bg-sky-50', text: 'text-sky-600' },
     purple: { dot: 'bg-purple-500', border: 'border-purple-500/20', bg: 'bg-purple-50', text: 'text-purple-600' },
 };
@@ -64,8 +64,8 @@ export default function RoadmapPage() {
         <AppLayout>
             <div className="max-w-2xl mx-auto space-y-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-text-primary">Learning roadmap</h1>
-                    <p className="text-text-secondary text-sm">Your step-by-step path to placement success</p>
+                    <h1 className="text-2xl font-bold text-text-primary dark:text-gray-100">Learning roadmap</h1>
+                    <p className="text-text-secondary dark:text-gray-400 text-sm">Your step-by-step path to placement success</p>
                 </div>
 
                 <div className="relative">
@@ -80,7 +80,7 @@ export default function RoadmapPage() {
                                     <div className={`w-10 h-10 rounded-full ${colors.bg} border ${colors.border} flex items-center justify-center shrink-0 z-10`}>
                                         <span className={`text-xs font-bold ${colors.text}`}>{si + 1}</span>
                                     </div>
-                                    <div className={`flex-1 bg-white border ${colors.border} rounded-xl p-5`}>
+                                    <div className={`flex-1 bg-white dark:bg-gray-800 border ${colors.border} rounded-xl p-5`}>
                                         <h3 className={`font-semibold ${colors.text} mb-3`}>Phase {si + 1}: {section.phase}</h3>
                                         <div className="space-y-2.5">
                                             {section.steps.map((step, i) => (
@@ -89,7 +89,7 @@ export default function RoadmapPage() {
                                                         ? <CheckCircle className="h-4 w-4 text-success shrink-0" />
                                                         : <Circle className="h-4 w-4 text-slate-300 shrink-0" />
                                                     }
-                                                    <span className={`text-sm ${step.done ? 'text-text-secondary line-through' : 'text-text-primary'}`}>
+                                                    <span className={`text-sm ${step.done ? 'text-text-secondary dark:text-gray-400 line-through' : 'text-text-primary dark:text-gray-100'}`}>
                                                         {step.label}
                                                     </span>
                                                 </div>
@@ -102,7 +102,7 @@ export default function RoadmapPage() {
                     </div>
                 </div>
 
-                <div className="text-center py-4 text-xs text-text-secondary">
+                <div className="text-center py-4 text-xs text-text-secondary dark:text-gray-400">
                     Complete activities on PlaceMate to unlock achievements and progress through the roadmap
                 </div>
             </div>

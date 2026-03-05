@@ -37,17 +37,17 @@ export default function ResetPasswordPage({ params }) {
 
     return (
         <div className="min-h-screen flex items-center justify-center" style={{ background: '#F8F9FA' }}>
-            <div className="bg-white rounded-2xl shadow-card p-8 w-full max-w-md animate-fade-in">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-card p-8 w-full max-w-md animate-fade-in">
                 <div className="text-center mb-6">
-                    <h1 className="text-2xl font-black text-textPrimary">Reset Password</h1>
-                    <p className="text-textSecondary text-sm mt-1">Enter your new password below</p>
+                    <h1 className="text-2xl font-black text-textPrimary dark:text-gray-100">Reset Password</h1>
+                    <p className="text-textSecondary dark:text-gray-400 text-sm mt-1">Enter your new password below</p>
                 </div>
 
                 {done ? (
                     <div className="text-center py-4">
                         <div className="text-4xl mb-3">✅</div>
-                        <p className="font-semibold text-textPrimary">Password reset successfully!</p>
-                        <p className="text-textSecondary text-sm mt-1">Redirecting to login…</p>
+                        <p className="font-semibold text-textPrimary dark:text-gray-100">Password reset successfully!</p>
+                        <p className="text-textSecondary dark:text-gray-400 text-sm mt-1">Redirecting to login…</p>
                     </div>
                 ) : (
                     <form onSubmit={handleSubmit} className="flex flex-col gap-4">

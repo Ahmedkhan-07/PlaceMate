@@ -28,13 +28,13 @@ export default function CertificateViewer({ certificate }) {
             </div>
 
             <h1 className="text-3xl font-bold text-white mb-1">Certificate of Achievement</h1>
-            <p className="text-gray-500 mb-8">This is to certify that</p>
+            <p className="text-gray-500 dark:text-gray-400 mb-8">This is to certify that</p>
 
             <p className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 to-purple-400 mb-6">
                 {certificate.userName}
             </p>
 
-            <p className="text-gray-700 mb-2">has successfully completed the</p>
+            <p className="text-gray-700 dark:text-gray-300 mb-2">has successfully completed the</p>
             <p className="text-xl font-semibold text-white mb-8">{certificate.title || 'Mock Placement Drive'}</p>
 
             <div className="flex justify-center gap-8 mb-8">

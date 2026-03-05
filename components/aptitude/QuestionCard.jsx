@@ -15,7 +15,7 @@ export default function QuestionCard({
     return (
         <div className="space-y-4">
             <div className="flex items-center justify-between">
-                <span className="text-xs text-gray-500 font-medium">Question {questionIndex + 1} of {total}</span>
+                <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">Question {questionIndex + 1} of {total}</span>
                 {question.topic && (
                     <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-600/20">
                         {question.topic}
@@ -23,7 +23,7 @@ export default function QuestionCard({
                 )}
             </div>
 
-            <p className="text-base text-gray-900 leading-relaxed">{question.question}</p>
+            <p className="text-base text-gray-900 dark:text-gray-100 leading-relaxed">{question.question}</p>
 
             <div className="space-y-2.5">
                 {question.options?.map((option, i) => {
@@ -44,14 +44,14 @@ export default function QuestionCard({
                                         ? 'border-red-500/50 bg-red-500/10 text-red-300'
                                         : isSelected
                                             ? 'border-emerald-600/50 bg-emerald-50 text-emerald-800'
-                                            : 'border-gray-200 bg-gray-50 text-gray-700 hover:border-gray-300 hover:bg-gray-100'
+                                            : 'border-gray-200 dark:border-gray-700 bg-gray-50 text-gray-700 dark:text-gray-300 hover:border-gray-300 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-700'
                                 }
                 ${showResult ? 'cursor-default' : 'cursor-pointer'}
               `}
                         >
                             <span className={`
                 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold shrink-0
-                ${isCorrectOption ? 'bg-emerald-500 text-white' : isWrongSelection ? 'bg-red-500 text-white' : isSelected ? 'bg-emerald-700 text-white' : 'bg-gray-200 text-gray-700'}
+                ${isCorrectOption ? 'bg-emerald-500 text-white' : isWrongSelection ? 'bg-red-500 text-white' : isSelected ? 'bg-emerald-700 text-white' : 'bg-gray-200 text-gray-700 dark:text-gray-300'}
               `}>
                                 {isCorrectOption ? <CheckCircle className="h-4 w-4" /> : ['A', 'B', 'C', 'D'][i]}
                             </span>
@@ -62,9 +62,9 @@ export default function QuestionCard({
             </div>
 
             {showResult && question.explanation && (
-                <div className="p-4 rounded-xl bg-gray-100 border border-gray-200">
-                    <p className="text-xs font-semibold text-gray-700 mb-1">Explanation</p>
-                    <p className="text-sm text-gray-500">{question.explanation}</p>
+                <div className="p-4 rounded-xl bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-700">
+                    <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Explanation</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">{question.explanation}</p>
                 </div>
             )}
         </div>

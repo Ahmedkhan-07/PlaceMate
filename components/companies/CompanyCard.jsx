@@ -26,19 +26,19 @@ export default function CompanyCard({ company, onStatusChange }) {
     const applyUrl = company.applyUrl || company.website;
 
     return (
-        <div className="bg-white border border-border rounded-2xl p-4 hover:border-primary/30 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 group">
+        <div className="bg-white dark:bg-gray-800 border border-border dark:border-gray-700 rounded-2xl p-4 hover:border-primary/30 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 group">
             {/* Header */}
             <div className="flex items-start gap-3 mb-3">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border border-border"
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border border-border dark:border-gray-700"
                     style={{ background: catStyle.bg }}>
                     <Briefcase size={16} style={{ color: catStyle.text }} />
                 </div>
                 <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1.5">
-                        <h3 className="font-semibold text-text-primary text-sm truncate">{company.name}</h3>
+                        <h3 className="font-semibold text-text-primary dark:text-gray-100 text-sm truncate">{company.name}</h3>
                         {company.website && (
                             <a href={company.website} target="_blank" rel="noopener noreferrer"
-                                className="text-text-secondary hover:text-primary transition-colors shrink-0 opacity-0 group-hover:opacity-100">
+                                className="text-text-secondary dark:text-gray-400 hover:text-primary transition-colors shrink-0 opacity-0 group-hover:opacity-100">
                                 <ExternalLink size={12} />
                             </a>
                         )}
@@ -61,7 +61,7 @@ export default function CompanyCard({ company, onStatusChange }) {
                 <select
                     value={company.status || 'Not Applied'}
                     onChange={e => onStatusChange(company.name, e.target.value)}
-                    className="w-full bg-background border border-border rounded-xl px-3 py-1.5 text-xs text-text-primary focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 mb-2 transition-all"
+                    className="w-full bg-background dark:bg-[#0F172A] dark:bg-[#0F172A] border border-border dark:border-gray-700 rounded-xl px-3 py-1.5 text-xs text-text-primary dark:text-gray-100 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 mb-2 transition-all"
                 >
                     {Object.keys(STATUS_CONFIG).map(s => (
                         <option key={s} value={s}>{s}</option>

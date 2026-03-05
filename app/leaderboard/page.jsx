@@ -40,15 +40,15 @@ export default function LeaderboardPage() {
                         <Trophy className="h-5 w-5 text-amber-400" />
                     </div>
                     <div>
-                        <h1 className="text-2xl font-bold text-text-primary">Leaderboard</h1>
-                        <p className="text-text-secondary text-sm">Top performers ranked by score</p>
+                        <h1 className="text-2xl font-bold text-text-primary dark:text-gray-100">Leaderboard</h1>
+                        <p className="text-text-secondary dark:text-gray-400 text-sm">Top performers ranked by score</p>
                     </div>
                 </div>
 
                 <FilterBar filters={filters} onChange={handleFilterChange} />
 
                 {loading ? (
-                    <div className="text-center py-16 text-text-secondary">Loading...</div>
+                    <div className="text-center py-16 text-text-secondary dark:text-gray-400">Loading...</div>
                 ) : (
                     <LeaderboardTable entries={entries} currentUserId={user?._id} />
                 )}

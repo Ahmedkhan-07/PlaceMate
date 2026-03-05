@@ -6,9 +6,9 @@ export default function StreakWidget({ streak = 0 }) {
     const today = new Date().getDay();
 
     return (
-        <div className="bg-white border border-border rounded-xl p-5 shadow-card">
+        <div className="bg-white dark:bg-gray-800 border border-border dark:border-gray-700 rounded-xl p-5 shadow-card">
             <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-semibold text-text-primary">Daily streak</h3>
+                <h3 className="text-sm font-semibold text-text-primary dark:text-gray-100">Daily streak</h3>
                 <div className="flex items-center gap-1.5">
                     <Flame className="h-4 w-4 text-orange-500" />
                     <span className="text-sm font-bold text-orange-500">{streak} days</span>
@@ -24,16 +24,16 @@ export default function StreakWidget({ streak = 0 }) {
                                 ? 'bg-orange-500 text-white'
                                 : i < today
                                     ? 'bg-orange-100 text-orange-600'
-                                    : 'bg-slate-100 text-slate-400'}`}>
+                                    : 'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-gray-500'}`}>
                             {i === today ? <Flame className="h-4 w-4" /> : day}
                         </div>
-                        <span className="text-xs text-text-secondary">{day}</span>
+                        <span className="text-xs text-text-secondary dark:text-gray-400">{day}</span>
                     </div>
                 ))}
             </div>
 
             {streak === 0 && (
-                <p className="text-xs text-text-secondary text-center mt-3">
+                <p className="text-xs text-text-secondary dark:text-gray-400 text-center mt-3">
                     Complete a session today to start your streak!
                 </p>
             )}

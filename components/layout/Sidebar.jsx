@@ -46,7 +46,7 @@ export default function Sidebar({ collapsed, setCollapsed }) {
                 )}
                 <button
                     onClick={() => setCollapsed(!collapsed)}
-                    className="ml-auto text-white/40 hover:text-white transition-colors p-1 rounded-lg hover:bg-white/10"
+                    className="ml-auto text-white/40 hover:text-white transition-colors p-1 rounded-lg hover:bg-white dark:bg-gray-800/10"
                     title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
                 >
                     {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
@@ -55,7 +55,7 @@ export default function Sidebar({ collapsed, setCollapsed }) {
 
             {/* User mini-profile */}
             {!collapsed && user && (
-                <Link href={`/profile/${user.username}`} className="mx-3 mt-3 flex items-center gap-2 p-2.5 rounded-xl hover:bg-white/10 transition-all cursor-pointer border border-white/10">
+                <Link href={`/profile/${user.username}`} className="mx-3 mt-3 flex items-center gap-2 p-2.5 rounded-xl hover:bg-white dark:bg-gray-800/10 transition-all cursor-pointer border border-white/10">
                     <div className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 overflow-hidden"
                         style={{ background: 'linear-gradient(135deg, #2563EB, #6366F1)' }}>
                         {user.profilePicture
@@ -96,7 +96,7 @@ export default function Sidebar({ collapsed, setCollapsed }) {
             <div className="p-2 border-t border-white/10 space-y-0.5">
                 <Link
                     href="/profile/settings"
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/10 transition-all ${collapsed ? 'justify-center' : ''}`}
+                    className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white dark:bg-gray-800/10 transition-all ${collapsed ? 'justify-center' : ''}`}
                     title={collapsed ? 'Settings' : ''}
                 >
                     <Settings size={18} className="shrink-0" />

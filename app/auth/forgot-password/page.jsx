@@ -30,21 +30,21 @@ export default function ForgotPasswordPage() {
 
     return (
         <div className="min-h-screen flex items-center justify-center" style={{ background: '#F8F9FA' }}>
-            <div className="bg-white rounded-2xl shadow-card p-8 w-full max-w-md animate-fade-in">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-card p-8 w-full max-w-md animate-fade-in">
                 <div className="text-center mb-6">
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4"
                         style={{ background: 'linear-gradient(135deg, #2563EB, #6366F1)' }}>
                         <span className="text-white font-black text-xl">P</span>
                     </div>
-                    <h1 className="text-2xl font-black text-textPrimary">Forgot Password</h1>
-                    <p className="text-textSecondary text-sm mt-1">Enter your email to receive a reset link</p>
+                    <h1 className="text-2xl font-black text-textPrimary dark:text-gray-100">Forgot Password</h1>
+                    <p className="text-textSecondary dark:text-gray-400 text-sm mt-1">Enter your email to receive a reset link</p>
                 </div>
 
                 {sent ? (
                     <div className="text-center py-4">
                         <div className="text-4xl mb-3">📧</div>
-                        <p className="text-textPrimary font-semibold">Check your email</p>
-                        <p className="text-textSecondary text-sm mt-1">If this email is registered, you'll receive a reset link shortly.</p>
+                        <p className="text-textPrimary dark:text-gray-100 font-semibold">Check your email</p>
+                        <p className="text-textSecondary dark:text-gray-400 text-sm mt-1">If this email is registered, you'll receive a reset link shortly.</p>
                         <Link href="/auth/login" className="btn-primary inline-block mt-6 px-8 py-3">Back to Login</Link>
                     </div>
                 ) : (
@@ -56,7 +56,7 @@ export default function ForgotPasswordPage() {
                         <button type="submit" disabled={loading} className="btn-primary w-full py-3 disabled:opacity-50">
                             {loading ? 'Sending…' : 'Send Reset Link'}
                         </button>
-                        <Link href="/auth/login" className="text-center text-sm text-textSecondary hover:text-primary transition-colors">
+                        <Link href="/auth/login" className="text-center text-sm text-textSecondary dark:text-gray-400 hover:text-primary transition-colors">
                             ← Back to Login
                         </Link>
                     </form>

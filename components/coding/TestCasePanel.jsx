@@ -24,13 +24,13 @@ export default function TestCasePanel({ testCases = [], onRun, running }) {
     };
 
     return (
-        <div className="border border-gray-200 rounded-xl overflow-hidden">
-            <div className="flex items-center gap-1 px-3 py-2 bg-gray-50 border-b border-gray-200 overflow-x-auto">
+        <div className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+            <div className="flex items-center gap-1 px-3 py-2 bg-gray-50 border-b border-gray-200 dark:border-gray-700 overflow-x-auto">
                 {cases.map((_, i) => (
                     <div key={i} className="flex items-center shrink-0">
                         <button
                             onClick={() => setActiveTab(i)}
-                            className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${activeTab === i ? 'bg-emerald-700 text-white' : 'text-gray-500 hover:text-gray-800'}`}
+                            className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${activeTab === i ? 'bg-emerald-700 text-white' : 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:text-gray-200'}`}
                         >
                             Case {i + 1}
                         </button>
@@ -41,19 +41,19 @@ export default function TestCasePanel({ testCases = [], onRun, running }) {
                         )}
                     </div>
                 ))}
-                <button onClick={addCase} className="shrink-0 p-1 text-gray-400 hover:text-gray-700 transition-colors">
+                <button onClick={addCase} className="shrink-0 p-1 text-gray-400 hover:text-gray-700 dark:text-gray-300 transition-colors">
                     <Plus className="h-3.5 w-3.5" />
                 </button>
             </div>
 
             <div className="p-3 space-y-3 bg-gray-50">
                 <div>
-                    <label className="text-xs text-gray-500 mb-1 block">Input</label>
+                    <label className="text-xs text-gray-500 dark:text-gray-400 mb-1 block">Input</label>
                     <textarea
                         value={cases[activeTab]?.input || ''}
                         onChange={e => updateCase(activeTab, 'input', e.target.value)}
                         rows={3}
-                        className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-800 font-mono resize-none focus:outline-none focus:border-emerald-700"
+                        className="w-full bg-gray-50 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-800 dark:text-gray-200 font-mono resize-none focus:outline-none focus:border-emerald-700"
                         placeholder="Enter input..."
                     />
                 </div>

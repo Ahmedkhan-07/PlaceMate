@@ -17,17 +17,17 @@ export default function ProfileStats({ stats }) {
     };
 
     return (
-        <div className="bg-white border border-gray-200 rounded-xl p-5">
-            <h3 className="text-sm font-semibold text-gray-800 mb-4">Performance Stats</h3>
+        <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5">
+            <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-4">Performance Stats</h3>
             <div className="grid grid-cols-2 gap-4">
                 {items.map(({ label, value, max, icon: Icon, color }) => (
                     <div key={label}>
                         <div className="flex items-center justify-between mb-1.5">
-                            <span className="text-xs text-gray-500 flex items-center gap-1.5">
+                            <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1.5">
                                 <Icon className={`h-3 w-3 text-${color}-400`} />
                                 {label}
                             </span>
-                            <span className="text-xs font-semibold text-gray-700">
+                            <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">
                                 {value}{max ? '%' : ''}
                             </span>
                         </div>

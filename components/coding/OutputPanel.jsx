@@ -3,7 +3,7 @@ import { CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 
 export default function OutputPanel({ output }) {
     if (!output) return (
-        <div className="border border-gray-200 rounded-xl bg-gray-50 p-4">
+        <div className="border border-gray-200 dark:border-gray-700 rounded-xl bg-gray-50 p-4">
             <p className="text-xs text-gray-400 font-mono">Run your code to see output here...</p>
         </div>
     );
@@ -12,7 +12,7 @@ export default function OutputPanel({ output }) {
     const hasError = exitCode !== 0 || stderr || error;
 
     return (
-        <div className="border border-gray-200 rounded-xl overflow-hidden">
+        <div className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
             <div className={`flex items-center gap-2 px-4 py-2.5 border-b ${hasError ? 'border-red-500/20 bg-red-500/5' : 'border-emerald-500/20 bg-emerald-500/5'}`}>
                 {hasError
                     ? <XCircle className="h-4 w-4 text-red-400" />
@@ -26,7 +26,7 @@ export default function OutputPanel({ output }) {
                 {stdout && (
                     <div>
                         <p className="text-xs text-gray-400 mb-1">Output</p>
-                        <pre className="text-gray-800 whitespace-pre-wrap">{stdout}</pre>
+                        <pre className="text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{stdout}</pre>
                     </div>
                 )}
                 {stderr && (

@@ -3,9 +3,9 @@ import { forwardRef } from 'react';
 
 const variants = {
     primary: 'bg-primary text-white hover:bg-primary-dark disabled:opacity-60 disabled:cursor-not-allowed',
-    secondary: 'bg-white border border-border text-text-primary hover:border-primary hover:text-primary',
-    outline: 'bg-transparent border border-border text-text-primary hover:border-primary hover:text-primary',
-    ghost: 'bg-transparent text-text-secondary hover:text-text-primary hover:bg-background border-transparent',
+    secondary: 'bg-white dark:bg-gray-800 border border-border dark:border-gray-700 text-text-primary dark:text-gray-100 hover:border-primary hover:text-primary',
+    outline: 'bg-transparent border border-border dark:border-gray-700 text-text-primary dark:text-gray-100 hover:border-primary hover:text-primary',
+    ghost: 'bg-transparent text-text-secondary dark:text-gray-400 hover:text-text-primary dark:text-gray-100 hover:bg-background dark:hover:bg-[#0F172A] dark:bg-[#0F172A] dark:hover:bg-[#0F172A] dark:bg-[#0F172A] border-transparent',
     danger: 'bg-danger text-white hover:bg-danger-dark disabled:opacity-60 disabled:cursor-not-allowed',
     success: 'bg-success text-white hover:bg-success-dark disabled:opacity-60 disabled:cursor-not-allowed',
 };

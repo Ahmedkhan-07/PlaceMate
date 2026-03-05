@@ -51,8 +51,8 @@ export default function DailyChallengePage() {
             <div className="max-w-2xl mx-auto space-y-6">
                 <div className="flex items-center gap-3">
                     <div>
-                        <h1 className="text-2xl font-bold text-text-primary">Daily challenge</h1>
-                        <p className="text-text-secondary text-sm flex items-center gap-1.5 mt-1">
+                        <h1 className="text-2xl font-bold text-text-primary dark:text-gray-100">Daily challenge</h1>
+                        <p className="text-text-secondary dark:text-gray-400 text-sm flex items-center gap-1.5 mt-1">
                             <Calendar className="h-4 w-4" />
                             {format(new Date(), 'EEEE, MMMM d yyyy')}
                         </p>
@@ -60,14 +60,14 @@ export default function DailyChallengePage() {
                 </div>
 
                 {loading ? (
-                    <div className="text-center py-20 text-text-secondary">Loading today&apos;s challenge...</div>
+                    <div className="text-center py-20 text-text-secondary dark:text-gray-400">Loading today&apos;s challenge...</div>
                 ) : !challenge ? (
-                    <div className="text-center py-20 text-text-secondary">No challenge available today. Check back later!</div>
+                    <div className="text-center py-20 text-text-secondary dark:text-gray-400">No challenge available today. Check back later!</div>
                 ) : (
                     <Card>
                         <CardHeader>
                             <div className="flex items-center justify-between">
-                                <span className="text-sm font-semibold text-text-primary">{challenge.topic}</span>
+                                <span className="text-sm font-semibold text-text-primary dark:text-gray-100">{challenge.topic}</span>
                                 {submitted && (
                                     <div className="flex items-center gap-1.5 text-success text-sm">
                                         <CheckCircle className="h-4 w-4" /> Completed

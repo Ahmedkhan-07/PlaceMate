@@ -26,8 +26,8 @@ export default function TimerBar({ duration = 30, onExpire, running = true }) {
         <div className="space-y-1.5">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1.5 text-sm">
-                    <Timer className={`h-4 w-4 ${urgent ? 'text-red-400 animate-pulse' : 'text-gray-500'}`} />
-                    <span className={`font-mono font-semibold ${urgent ? 'text-red-400' : 'text-gray-700'}`}>
+                    <Timer className={`h-4 w-4 ${urgent ? 'text-red-400 animate-pulse' : 'text-gray-500 dark:text-gray-400'}`} />
+                    <span className={`font-mono font-semibold ${urgent ? 'text-red-400' : 'text-gray-700 dark:text-gray-300'}`}>
                         {timeLeft}s
                     </span>
                 </div>

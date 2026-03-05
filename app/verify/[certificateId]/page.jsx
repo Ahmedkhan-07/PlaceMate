@@ -23,20 +23,20 @@ export default function VerifyPage({ params }) {
     }, [params.certificateId]);
 
     return (
-        <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center p-6">
+        <div className="min-h-screen bg-slate-900 dark:bg-slate-950 flex flex-col items-center justify-center p-6">
             <div className="w-full max-w-2xl space-y-6">
                 <div className="text-center">
                     <Link href="/" className="text-2xl font-bold text-white">PlaceMate</Link>
-                    <p className="text-slate-400 text-sm mt-1">Certificate Verification</p>
+                    <p className="text-slate-400 dark:text-gray-500 text-sm mt-1">Certificate Verification</p>
                 </div>
 
                 {loading ? (
-                    <div className="text-center py-16 text-slate-400">Verifying certificate...</div>
+                    <div className="text-center py-16 text-slate-400 dark:text-gray-500">Verifying certificate...</div>
                 ) : !cert ? (
                     <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-8 text-center">
                         <XCircle className="h-12 w-12 text-red-400 mx-auto mb-3" />
                         <h2 className="text-lg font-bold text-red-400">Certificate Not Found</h2>
-                        <p className="text-slate-400 text-sm mt-1">This certificate ID is invalid or has been revoked.</p>
+                        <p className="text-slate-400 dark:text-gray-500 text-sm mt-1">This certificate ID is invalid or has been revoked.</p>
                     </div>
                 ) : (
                     <div className="space-y-4">

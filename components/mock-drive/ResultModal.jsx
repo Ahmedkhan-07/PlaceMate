@@ -20,14 +20,14 @@ export default function ResultModal({ isOpen, onClose, result, onRetry, onDownlo
                     <h2 className={`text-2xl font-bold ${passed ? 'text-emerald-400' : 'text-red-400'}`}>
                         {passed ? '🎉 You Passed!' : '😔 Not This Time'}
                     </h2>
-                    <p className="text-gray-500 text-sm mt-1">{result.message}</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">{result.message}</p>
                 </div>
 
                 {result.scores && (
-                    <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 space-y-2 text-left">
+                    <div className="bg-gray-50 border border-gray-200 dark:border-gray-700 rounded-xl p-4 space-y-2 text-left">
                         {Object.entries(result.scores).map(([round, score]) => (
                             <div key={round} className="flex justify-between items-center">
-                                <span className="text-sm text-gray-500 capitalize">{round}</span>
+                                <span className="text-sm text-gray-500 dark:text-gray-400 capitalize">{round}</span>
                                 <span className={`text-sm font-semibold ${score >= 60 ? 'text-emerald-400' : 'text-red-400'}`}>{score}%</span>
                             </div>
                         ))}

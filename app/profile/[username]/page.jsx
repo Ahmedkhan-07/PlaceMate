@@ -77,12 +77,12 @@ function ProfileCompletion({ profile }) {
     const isComplete = pct === 100;
 
     return (
-        <div className="bg-white rounded-2xl border border-border p-5 shadow-sm">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-border dark:border-gray-700 p-5 shadow-sm">
             <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
-                    <h3 className="font-semibold text-text-primary text-sm">Profile completion</h3>
+                    <h3 className="font-semibold text-text-primary dark:text-gray-100 text-sm">Profile completion</h3>
                     {isComplete && (
-                        <span className="flex items-center gap-1 text-xs font-semibold text-success bg-green-50 border border-green-200 px-2 py-0.5 rounded-full">
+                        <span className="flex items-center gap-1 text-xs font-semibold text-success bg-green-50 dark:bg-green-900/30 border border-green-200 px-2 py-0.5 rounded-full">
                             <CheckCircle className="w-3 h-3" /> Verified
                         </span>
                     )}
@@ -92,7 +92,7 @@ function ProfileCompletion({ profile }) {
             </div>
 
             {/* Progress bar */}
-            <div className="h-2 bg-slate-100 rounded-full overflow-hidden mb-3">
+            <div className="h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-3">
                 <div
                     className={`h-full rounded-full transition-all duration-700 ${isComplete ? 'bg-success' : pct >= 70 ? 'bg-primary' : 'bg-warning'
                         }`}
@@ -104,10 +104,10 @@ function ProfileCompletion({ profile }) {
                 <p className="text-xs text-success font-medium">🎉 Your profile is fully complete!</p>
             ) : (
                 <div>
-                    <p className="text-xs text-text-secondary mb-2">Fill in {missing.length} more fields to get your verified badge:</p>
+                    <p className="text-xs text-text-secondary dark:text-gray-400 mb-2">Fill in {missing.length} more fields to get your verified badge:</p>
                     <div className="flex flex-wrap gap-1.5">
                         {missing.map(f => (
-                            <span key={f.key} className="text-xs bg-slate-100 text-text-secondary px-2 py-0.5 rounded-full">
+                            <span key={f.key} className="text-xs bg-slate-100 dark:bg-slate-800 text-text-secondary dark:text-gray-400 px-2 py-0.5 rounded-full">
                                 {f.label}
                             </span>
                         ))}
@@ -124,19 +124,19 @@ function ProfileCompletion({ profile }) {
 
 function StatCard({ label, value, sub, color }) {
     return (
-        <div className="bg-white rounded-2xl border border-border p-4 shadow-sm text-center">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-border dark:border-gray-700 p-4 shadow-sm text-center">
             <div className="text-2xl font-black" style={{ color: color || '#2563EB' }}>{value}</div>
-            <div className="text-sm font-semibold text-text-primary mt-0.5">{label}</div>
-            {sub && <div className="text-xs text-text-secondary mt-0.5">{sub}</div>}
+            <div className="text-sm font-semibold text-text-primary dark:text-gray-100 mt-0.5">{label}</div>
+            {sub && <div className="text-xs text-text-secondary dark:text-gray-400 mt-0.5">{sub}</div>}
         </div>
     );
 }
 
 function RankCard({ label, value, icon }) {
     return (
-        <div className="bg-white rounded-2xl border border-border p-4 text-center shadow-sm">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-border dark:border-gray-700 p-4 text-center shadow-sm">
             <div className="text-2xl mb-1">{icon}</div>
-            <div className="text-xs text-text-secondary font-medium">{label}</div>
+            <div className="text-xs text-text-secondary dark:text-gray-400 font-medium">{label}</div>
             <div className="text-xl font-black mt-0.5" style={{ color: value > 0 ? '#2563EB' : '#94A3B8' }}>
                 {value > 0 ? `#${value}` : '—'}
             </div>
@@ -196,7 +196,7 @@ export default function ProfilePage({ params }) {
             <div className="flex items-center justify-center min-h-64">
                 <div className="text-center">
                     <div className="w-12 h-12 rounded-full border-4 border-primary border-t-transparent animate-spin mx-auto mb-3" />
-                    <p className="text-text-secondary">Loading profile...</p>
+                    <p className="text-text-secondary dark:text-gray-400">Loading profile...</p>
                 </div>
             </div>
         </AppLayout>
@@ -206,8 +206,8 @@ export default function ProfilePage({ params }) {
         <AppLayout>
             <div className="text-center py-20">
                 <div className="text-5xl mb-4">🔍</div>
-                <h2 className="text-xl font-bold text-text-primary">Profile not found</h2>
-                <p className="text-text-secondary mt-2">{error || "This user doesn't exist or has a private profile."}</p>
+                <h2 className="text-xl font-bold text-text-primary dark:text-gray-100">Profile not found</h2>
+                <p className="text-text-secondary dark:text-gray-400 mt-2">{error || "This user doesn't exist or has a private profile."}</p>
                 <Link href="/dashboard" className="inline-block mt-4 btn-primary px-6 py-2 text-sm">
                     Back to Dashboard
                 </Link>
@@ -257,7 +257,7 @@ export default function ProfilePage({ params }) {
             <div className="max-w-4xl mx-auto space-y-6 pb-24">
 
                 {/* Header Card */}
-                <div className="bg-white rounded-2xl border border-border shadow-sm overflow-hidden">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl border border-border dark:border-gray-700 shadow-sm overflow-hidden">
                     <div className="h-28" style={{ background: 'linear-gradient(135deg, #1E3A5F, #2563EB, #6366F1)' }} />
                     <div className="px-6 pb-6">
                         {/* Avatar row — avatar pokes out of banner, Edit button floats right */}
@@ -280,25 +280,25 @@ export default function ProfilePage({ params }) {
                         {/* Text info — always in white area */}
                         <div>
                             <div className="flex items-center gap-2 flex-wrap">
-                                <h1 className="text-2xl font-black text-text-primary">{profile.name}</h1>
+                                <h1 className="text-2xl font-black text-text-primary dark:text-gray-100">{profile.name}</h1>
                                 {/* Owner-only verified badge */}
                                 {isOwner && isVerified && (
-                                    <span className="flex items-center gap-1 text-xs font-semibold text-success bg-green-50 border border-green-200 px-2 py-0.5 rounded-full">
+                                    <span className="flex items-center gap-1 text-xs font-semibold text-success bg-green-50 dark:bg-green-900/30 border border-green-200 px-2 py-0.5 rounded-full">
                                         <CheckCircle className="w-3.5 h-3.5" /> Verified
                                     </span>
                                 )}
                             </div>
-                            <p className="text-sm text-slate-500 mt-0.5">@{profile.username}</p>
-                            <div className="flex flex-wrap gap-1.5 mt-2 text-xs text-text-secondary">
-                                {profile.college && <span className="bg-slate-100 px-2 py-0.5 rounded-full">🏫 {profile.college}</span>}
-                                {profile.branch && <span className="bg-slate-100 px-2 py-0.5 rounded-full">📚 {profile.branch}</span>}
-                                {profile.section && <span className="bg-slate-100 px-2 py-0.5 rounded-full">👥 Sec {profile.section}</span>}
-                                {profile.year && <span className="bg-slate-100 px-2 py-0.5 rounded-full">📅 {profile.year}</span>}
-                                {isOwner && profile.rollNumber && <span className="bg-slate-100 px-2 py-0.5 rounded-full">🎓 {profile.rollNumber}</span>}
-                                {profile.leetcodeRank && <span className="bg-amber-50 px-2 py-0.5 rounded-full text-amber-700">🟠 LC #{profile.leetcodeRank}</span>}
+                            <p className="text-sm text-slate-500 dark:text-gray-400 mt-0.5">@{profile.username}</p>
+                            <div className="flex flex-wrap gap-1.5 mt-2 text-xs text-text-secondary dark:text-gray-400">
+                                {profile.college && <span className="bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">🏫 {profile.college}</span>}
+                                {profile.branch && <span className="bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">📚 {profile.branch}</span>}
+                                {profile.section && <span className="bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">👥 Sec {profile.section}</span>}
+                                {profile.year && <span className="bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">📅 {profile.year}</span>}
+                                {isOwner && profile.rollNumber && <span className="bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">🎓 {profile.rollNumber}</span>}
+                                {profile.leetcodeRank && <span className="bg-amber-50 dark:bg-amber-900/30 px-2 py-0.5 rounded-full text-amber-700 dark:text-amber-300">🟠 LC #{profile.leetcodeRank}</span>}
                             </div>
                             {profile.bio && (
-                                <p className="mt-3 text-sm text-text-secondary border-t border-border pt-3">{profile.bio}</p>
+                                <p className="mt-3 text-sm text-text-secondary dark:text-gray-400 border-t border-border dark:border-gray-700 pt-3">{profile.bio}</p>
                             )}
                         </div>
                     </div>
@@ -326,8 +326,8 @@ export default function ProfilePage({ params }) {
                 {/* Charts */}
                 {scores.length > 0 && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                        <div className="bg-white rounded-2xl border border-border p-5 shadow-sm">
-                            <h3 className="font-semibold text-text-primary mb-4">Performance Overview</h3>
+                        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-border dark:border-gray-700 p-5 shadow-sm">
+                            <h3 className="font-semibold text-text-primary dark:text-gray-100 mb-4">Performance Overview</h3>
                             <ResponsiveContainer width="100%" height={200}>
                                 <RadarChart data={radarData}>
                                     <PolarGrid stroke="#E2E8F0" />
@@ -337,8 +337,8 @@ export default function ProfilePage({ params }) {
                             </ResponsiveContainer>
                         </div>
                         {topicData.length > 0 && (
-                            <div className="bg-white rounded-2xl border border-border p-5 shadow-sm">
-                                <h3 className="font-semibold text-text-primary mb-4">Topic-wise Scores</h3>
+                            <div className="bg-white dark:bg-gray-800 rounded-2xl border border-border dark:border-gray-700 p-5 shadow-sm">
+                                <h3 className="font-semibold text-text-primary dark:text-gray-100 mb-4">Topic-wise Scores</h3>
                                 <ResponsiveContainer width="100%" height={200}>
                                     <BarChart data={topicData}>
                                         <XAxis dataKey="topic" tick={{ fontSize: 10, fill: '#64748B' }} />
@@ -353,15 +353,15 @@ export default function ProfilePage({ params }) {
                 )}
 
                 {/* Badges */}
-                <div className="bg-white rounded-2xl border border-border p-6 shadow-sm">
-                    <h3 className="font-semibold text-text-primary mb-4">Achievements & Badges</h3>
+                <div className="bg-white dark:bg-gray-800 rounded-2xl border border-border dark:border-gray-700 p-6 shadow-sm">
+                    <h3 className="font-semibold text-text-primary dark:text-gray-100 mb-4">Achievements & Badges</h3>
                     <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
                         {ALL_BADGES.map(badgeId => {
                             const meta = BADGE_META[badgeId];
                             const earned = earnedBadges.includes(badgeId);
                             return (
                                 <div key={badgeId} title={meta.desc}
-                                    className={`flex flex-col items-center gap-1 p-3 rounded-xl border transition-all ${earned ? 'border-transparent shadow-sm' : 'border-border opacity-40 grayscale'}`}
+                                    className={`flex flex-col items-center gap-1 p-3 rounded-xl border transition-all ${earned ? 'border-transparent shadow-sm' : 'border-border dark:border-gray-700 opacity-40 grayscale'}`}
                                     style={earned ? { background: `${meta.color}15`, borderColor: `${meta.color}40` } : {}}>
                                     <div className="text-2xl">{meta.emoji}</div>
                                     <div className="text-xs font-medium text-center leading-tight" style={{ color: earned ? meta.color : '#94A3B8' }}>
@@ -375,18 +375,18 @@ export default function ProfilePage({ params }) {
 
                 {/* Certificates */}
                 {certificates.length > 0 && (
-                    <div className="bg-white rounded-2xl border border-border p-6 shadow-sm">
-                        <h3 className="font-semibold text-text-primary mb-4">Certificates</h3>
+                    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-border dark:border-gray-700 p-6 shadow-sm">
+                        <h3 className="font-semibold text-text-primary dark:text-gray-100 mb-4">Certificates</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {certificates.map(cert => (
-                                <div key={cert._id} className="border border-border rounded-xl p-4 flex items-center gap-3">
+                                <div key={cert._id} className="border border-border dark:border-gray-700 rounded-xl p-4 flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
                                         style={{ background: 'linear-gradient(135deg, #F59E0B22, #D9770622)' }}>
                                         <Award size={18} style={{ color: '#F59E0B' }} />
                                     </div>
                                     <div className="flex-1 min-w-0">
-                                        <div className="font-semibold text-sm text-text-primary truncate">{cert.companyName || 'Mock Drive'}</div>
-                                        <div className="text-xs text-text-secondary">{cert.difficulty} • {cert.overallScore}%</div>
+                                        <div className="font-semibold text-sm text-text-primary dark:text-gray-100 truncate">{cert.companyName || 'Mock Drive'}</div>
+                                        <div className="text-xs text-text-secondary dark:text-gray-400">{cert.difficulty} • {cert.overallScore}%</div>
                                     </div>
                                     {cert.certificateUrl && (
                                         <a href={cert.certificateUrl} target="_blank" rel="noopener noreferrer"
@@ -402,8 +402,8 @@ export default function ProfilePage({ params }) {
 
                 {/* Social Links — visible to everyone if profile has links */}
                 {SOCIAL_LINKS.some(s => profile[s.key]) && (
-                    <div className="bg-white rounded-2xl border border-border p-6 shadow-sm">
-                        <h3 className="font-semibold text-text-primary mb-4">Connect</h3>
+                    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-border dark:border-gray-700 p-6 shadow-sm">
+                        <h3 className="font-semibold text-text-primary dark:text-gray-100 mb-4">Connect</h3>
                         <div className="flex flex-wrap gap-2.5">
                             {SOCIAL_LINKS.map(({ key, label, color, bg, icon }) => {
                                 const url = profile[key];

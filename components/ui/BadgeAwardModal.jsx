@@ -72,16 +72,16 @@ export default function BadgeAwardModal({ badges, onClose }) {
                 <ConfettiPiece key={i} delay={i * 0.06} color={confettiColors[i % confettiColors.length]} />
             ))}
 
-            <div className="relative bg-white rounded-3xl p-8 max-w-sm w-full mx-4 text-center shadow-2xl animate-scale-in">
+            <div className="relative bg-white dark:bg-gray-800 rounded-3xl p-8 max-w-sm w-full mx-4 text-center shadow-2xl animate-scale-in">
                 {/* Close */}
                 <button onClick={() => { setVisible(false); onClose?.(); }}
-                    className="absolute top-4 right-4 text-text-secondary hover:text-text-primary transition-colors">
+                    className="absolute top-4 right-4 text-text-secondary dark:text-gray-400 hover:text-text-primary dark:text-gray-100 transition-colors">
                     <X size={18} />
                 </button>
 
                 {/* Badge counter */}
                 {badges.length > 1 && (
-                    <div className="absolute top-4 left-4 text-xs text-text-secondary">
+                    <div className="absolute top-4 left-4 text-xs text-text-secondary dark:text-gray-400">
                         {current + 1} / {badges.length}
                     </div>
                 )}
@@ -96,8 +96,8 @@ export default function BadgeAwardModal({ badges, onClose }) {
                     Badge unlocked! 🎉
                 </div>
 
-                <h2 className="text-2xl font-black text-text-primary mb-2">{badge}</h2>
-                <p className="text-text-secondary text-sm mb-6">{meta.desc}</p>
+                <h2 className="text-2xl font-black text-text-primary dark:text-gray-100 mb-2">{badge}</h2>
+                <p className="text-text-secondary dark:text-gray-400 text-sm mb-6">{meta.desc}</p>
 
                 {/* Progress dots */}
                 {badges.length > 1 && (

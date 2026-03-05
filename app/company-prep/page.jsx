@@ -264,6 +264,196 @@ const companyPrepData = [
             { title: "Reconstruct Itinerary", url: "https://leetcode.com/problems/reconstruct-itinerary/", difficulty: "Hard" },
             { title: "Swim in Rising Water", url: "https://leetcode.com/problems/swim-in-rising-water/", difficulty: "Hard" }
         ]
+    },
+    {
+        name: "TCS",
+        logo: "🔷",
+        difficulty: "Easy",
+        topics: [
+            "Aptitude and Reasoning", "Verbal Ability", "Basic Programming",
+            "Data Structures Basics", "DBMS Basics", "Networking Basics"
+        ],
+        interviewProcess: [
+            "TCS NQT — National Qualifier Test with aptitude, reasoning, verbal and coding sections",
+            "Technical Interview — basic CS fundamentals and one programming language",
+            "HR Interview — standard questions about yourself and career goals",
+            "One of the biggest recruiters in AP and Telangana colleges",
+            "Focus on communication skills and basic programming knowledge",
+            "Know at least one language well — C, Java or Python"
+        ],
+        leetcodeQuestions: [
+            { title: "Reverse String", url: "https://leetcode.com/problems/reverse-string/", difficulty: "Easy" },
+            { title: "Fibonacci Number", url: "https://leetcode.com/problems/fibonacci-number/", difficulty: "Easy" },
+            { title: "Palindrome Number", url: "https://leetcode.com/problems/palindrome-number/", difficulty: "Easy" },
+            { title: "FizzBuzz", url: "https://leetcode.com/problems/fizz-buzz/", difficulty: "Easy" },
+            { title: "Single Number", url: "https://leetcode.com/problems/single-number/", difficulty: "Easy" },
+            { title: "Missing Number", url: "https://leetcode.com/problems/missing-number/", difficulty: "Easy" },
+            { title: "Best Time to Buy and Sell Stock", url: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/", difficulty: "Easy" },
+            { title: "Maximum Subarray", url: "https://leetcode.com/problems/maximum-subarray/", difficulty: "Medium" }
+        ]
+    },
+    {
+        name: "Infosys",
+        logo: "🟢",
+        difficulty: "Easy",
+        topics: [
+            "Aptitude", "Logical Reasoning", "Verbal English",
+            "Basic Programming", "Pseudocode", "Data Structures Basics"
+        ],
+        interviewProcess: [
+            "InfyTQ certification or Infosys online exam — aptitude and coding",
+            "Technical Interview — basic programming and CS concepts",
+            "HR Interview — career goals, strengths and weaknesses",
+            "Visits almost every engineering college in AP and Telangana",
+            "Focus on problem solving approach not just correct answer",
+            "Good communication skills are very important for selection"
+        ],
+        leetcodeQuestions: [
+            { title: "Two Sum", url: "https://leetcode.com/problems/two-sum/", difficulty: "Easy" },
+            { title: "Reverse Linked List", url: "https://leetcode.com/problems/reverse-linked-list/", difficulty: "Easy" },
+            { title: "Valid Parentheses", url: "https://leetcode.com/problems/valid-parentheses/", difficulty: "Easy" },
+            { title: "Maximum Subarray", url: "https://leetcode.com/problems/maximum-subarray/", difficulty: "Medium" },
+            { title: "Climbing Stairs", url: "https://leetcode.com/problems/climbing-stairs/", difficulty: "Easy" },
+            { title: "Contains Duplicate", url: "https://leetcode.com/problems/contains-duplicate/", difficulty: "Easy" },
+            { title: "Majority Element", url: "https://leetcode.com/problems/majority-element/", difficulty: "Easy" },
+            { title: "Move Zeroes", url: "https://leetcode.com/problems/move-zeroes/", difficulty: "Easy" }
+        ]
+    },
+    {
+        name: "Wipro",
+        logo: "🟡",
+        difficulty: "Easy",
+        topics: [
+            "Aptitude", "Logical Reasoning", "Verbal Ability",
+            "Basic Coding", "OOPs Concepts", "DBMS and SQL"
+        ],
+        interviewProcess: [
+            "WILP or Elite or Turbo online test — aptitude and coding sections",
+            "Technical Interview — OOPs, DBMS, basic coding questions",
+            "HR Interview — standard HR questions",
+            "Very active in AP and Telangana college placements",
+            "Focus on OOPs concepts — inheritance, polymorphism, encapsulation, abstraction",
+            "Know SQL queries well — joins, subqueries, aggregations, group by"
+        ],
+        leetcodeQuestions: [
+            { title: "Reverse Integer", url: "https://leetcode.com/problems/reverse-integer/", difficulty: "Medium" },
+            { title: "Remove Duplicates from Sorted Array", url: "https://leetcode.com/problems/remove-duplicates-from-sorted-array/", difficulty: "Easy" },
+            { title: "Pascal Triangle", url: "https://leetcode.com/problems/pascals-triangle/", difficulty: "Easy" },
+            { title: "Best Time to Buy and Sell Stock II", url: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/", difficulty: "Medium" },
+            { title: "Intersection of Two Arrays", url: "https://leetcode.com/problems/intersection-of-two-arrays/", difficulty: "Easy" },
+            { title: "Power of Two", url: "https://leetcode.com/problems/power-of-two/", difficulty: "Easy" },
+            { title: "Count Primes", url: "https://leetcode.com/problems/count-primes/", difficulty: "Medium" },
+            { title: "Implement strStr", url: "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/", difficulty: "Easy" }
+        ]
+    },
+    {
+        name: "Cognizant",
+        logo: "🔵",
+        difficulty: "Easy",
+        topics: [
+            "Aptitude and Reasoning", "Verbal Ability", "Basic Programming",
+            "OOPs", "DBMS", "Basic Data Structures"
+        ],
+        interviewProcess: [
+            "GenC online assessment — aptitude, reasoning, verbal and coding",
+            "Technical Interview — basic programming, OOPs and DBMS",
+            "HR Interview — communication and culture fit",
+            "One of the top recruiters across all AP and Telangana colleges",
+            "GenC Pro track available for higher package with tougher assessment",
+            "Focus on logical thinking and basic programming concepts"
+        ],
+        leetcodeQuestions: [
+            { title: "Reverse String", url: "https://leetcode.com/problems/reverse-string/", difficulty: "Easy" },
+            { title: "Valid Palindrome", url: "https://leetcode.com/problems/valid-palindrome/", difficulty: "Easy" },
+            { title: "Find the Duplicate Number", url: "https://leetcode.com/problems/find-the-duplicate-number/", difficulty: "Medium" },
+            { title: "Sort Colors", url: "https://leetcode.com/problems/sort-colors/", difficulty: "Medium" },
+            { title: "Merge Sorted Array", url: "https://leetcode.com/problems/merge-sorted-array/", difficulty: "Easy" },
+            { title: "Plus One", url: "https://leetcode.com/problems/plus-one/", difficulty: "Easy" },
+            { title: "Length of Last Word", url: "https://leetcode.com/problems/length-of-last-word/", difficulty: "Easy" },
+            { title: "Roman to Integer", url: "https://leetcode.com/problems/roman-to-integer/", difficulty: "Easy" }
+        ]
+    },
+    {
+        name: "Tech Mahindra",
+        logo: "🟠",
+        difficulty: "Easy",
+        topics: [
+            "Aptitude and Reasoning", "Basic Programming", "Networking Basics",
+            "OOPs Concepts", "DBMS", "Verbal Communication"
+        ],
+        interviewProcess: [
+            "Online Test — aptitude, reasoning, verbal and basic coding sections",
+            "Technical Interview — basic CS concepts and one programming language",
+            "HR Interview — career goals and communication assessment",
+            "Frequently visits colleges in Andhra Pradesh and Telangana every year",
+            "Focus on communication skills and basic technical knowledge",
+            "Networking and telecom domain knowledge is a bonus"
+        ],
+        leetcodeQuestions: [
+            { title: "Reverse Linked List", url: "https://leetcode.com/problems/reverse-linked-list/", difficulty: "Easy" },
+            { title: "Middle of Linked List", url: "https://leetcode.com/problems/middle-of-the-linked-list/", difficulty: "Easy" },
+            { title: "Binary Search", url: "https://leetcode.com/problems/binary-search/", difficulty: "Easy" },
+            { title: "First Bad Version", url: "https://leetcode.com/problems/first-bad-version/", difficulty: "Easy" },
+            { title: "Sqrt(x)", url: "https://leetcode.com/problems/sqrtx/", difficulty: "Easy" },
+            { title: "Guess Number Higher or Lower", url: "https://leetcode.com/problems/guess-number-higher-or-lower/", difficulty: "Easy" },
+            { title: "Valid Anagram", url: "https://leetcode.com/problems/valid-anagram/", difficulty: "Easy" },
+            { title: "Ransom Note", url: "https://leetcode.com/problems/ransom-note/", difficulty: "Easy" }
+        ]
+    },
+    {
+        name: "Capgemini",
+        logo: "🔷",
+        difficulty: "Easy",
+        topics: [
+            "Aptitude", "Logical Reasoning", "Pseudocode",
+            "Basic Programming", "Verbal Ability", "Abstract Reasoning"
+        ],
+        interviewProcess: [
+            "Capgemini Game Based Assessment — unique game based aptitude test",
+            "Pseudocode test — understand and predict output of pseudocode",
+            "Technical Interview — basic programming and CS concepts",
+            "HR Interview — standard questions and career aspirations",
+            "Visits many AP and Telangana colleges for mass recruitment",
+            "Pseudocode section is unique to Capgemini — practice it specifically"
+        ],
+        leetcodeQuestions: [
+            { title: "Reverse Words in a String", url: "https://leetcode.com/problems/reverse-words-in-a-string/", difficulty: "Medium" },
+            { title: "Is Subsequence", url: "https://leetcode.com/problems/is-subsequence/", difficulty: "Easy" },
+            { title: "Number of 1 Bits", url: "https://leetcode.com/problems/number-of-1-bits/", difficulty: "Easy" },
+            { title: "Hamming Distance", url: "https://leetcode.com/problems/hamming-distance/", difficulty: "Easy" },
+            { title: "Excel Sheet Column Number", url: "https://leetcode.com/problems/excel-sheet-column-number/", difficulty: "Easy" },
+            { title: "Happy Number", url: "https://leetcode.com/problems/happy-number/", difficulty: "Easy" },
+            { title: "Add Digits", url: "https://leetcode.com/problems/add-digits/", difficulty: "Easy" },
+            { title: "Ugly Number", url: "https://leetcode.com/problems/ugly-number/", difficulty: "Easy" }
+        ]
+    },
+    {
+        name: "Accenture",
+        logo: "🟣",
+        difficulty: "Easy",
+        topics: [
+            "Aptitude", "Logical Reasoning", "Verbal Ability",
+            "Basic Programming", "OOPs", "Communication Skills"
+        ],
+        interviewProcess: [
+            "Cognitive and Technical Assessment — aptitude and technical MCQ",
+            "Communication Assessment — spoken English evaluation",
+            "Technical Interview — basic CS concepts and programming",
+            "HR Interview — culture fit and career goals",
+            "Offers ASE role at 4.5 LPA and SE role at 6.5 LPA based on score",
+            "One of the biggest recruiters visiting every AP and Telangana college",
+            "Communication skills are weighted heavily in final selection"
+        ],
+        leetcodeQuestions: [
+            { title: "Two Sum", url: "https://leetcode.com/problems/two-sum/", difficulty: "Easy" },
+            { title: "Valid Parentheses", url: "https://leetcode.com/problems/valid-parentheses/", difficulty: "Easy" },
+            { title: "Merge Two Sorted Lists", url: "https://leetcode.com/problems/merge-two-sorted-lists/", difficulty: "Easy" },
+            { title: "Maximum Depth of Binary Tree", url: "https://leetcode.com/problems/maximum-depth-of-binary-tree/", difficulty: "Easy" },
+            { title: "Symmetric Tree", url: "https://leetcode.com/problems/symmetric-tree/", difficulty: "Easy" },
+            { title: "Path Sum", url: "https://leetcode.com/problems/path-sum/", difficulty: "Easy" },
+            { title: "Min Stack", url: "https://leetcode.com/problems/min-stack/", difficulty: "Medium" },
+            { title: "Intersection of Two Linked Lists", url: "https://leetcode.com/problems/intersection-of-two-linked-lists/", difficulty: "Easy" }
+        ]
     }
 ];
 
@@ -303,10 +493,10 @@ function ProgressBar({ done, total, difficulty }) {
     return (
         <div className="mt-3">
             <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs text-slate-500 font-medium">{done}/{total} solved</span>
+                <span className="text-xs text-slate-500 dark:text-gray-400 font-medium">{done}/{total} solved</span>
                 <span className="text-xs font-bold" style={{ color: cfg.bar }}>{pct}%</span>
             </div>
-            <div className="w-full h-1.5 rounded-full bg-slate-100 overflow-hidden">
+            <div className="w-full h-1.5 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
                 <div
                     className="h-full rounded-full transition-all duration-500"
                     style={{ width: `${pct}%`, background: cfg.bar }}
@@ -331,7 +521,7 @@ function CompanyCard({ company, done, onToggleDone }) {
 
     return (
         <div
-            className={`bg-white rounded-2xl border transition-all duration-300 overflow-hidden ${expanded ? 'border-blue-300 shadow-lg shadow-blue-50' : 'border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 cursor-pointer'}`}
+            className={`bg-white dark:bg-gray-800 rounded-2xl border transition-all duration-300 overflow-hidden ${expanded ? 'border-blue-300 shadow-lg shadow-blue-50' : 'border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 cursor-pointer'}`}
             style={{ transition: 'all 0.2s ease' }}
         >
             {/* Card header */}
@@ -345,12 +535,12 @@ function CompanyCard({ company, done, onToggleDone }) {
                 </div>
                 <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                        <h3 className="font-bold text-slate-800 text-base">{company.name}</h3>
+                        <h3 className="font-bold text-slate-800 dark:text-gray-200 text-base">{company.name}</h3>
                         <DifficultyBadge difficulty={company.difficulty} />
                     </div>
                     <ProgressBar done={doneCount} total={total} difficulty={company.difficulty} />
                 </div>
-                <div className="shrink-0 text-slate-400 mt-1">
+                <div className="shrink-0 text-slate-400 dark:text-gray-500 mt-1">
                     {expanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
                 </div>
             </div>
@@ -365,8 +555,8 @@ function CompanyCard({ company, done, onToggleDone }) {
                                 key={t}
                                 onClick={() => setTab(i)}
                                 className={`flex-1 py-3 text-xs font-semibold transition-all ${tab === i
-                                    ? 'text-blue-600 border-b-2 border-blue-600 bg-white'
-                                    : 'text-slate-500 hover:text-slate-700'}`}
+                                    ? 'text-blue-600 border-b-2 border-blue-600 bg-white dark:bg-gray-800'
+                                    : 'text-slate-500 dark:text-gray-400 hover:text-slate-700 dark:text-gray-300'}`}
                             >
                                 {t === 'Topics' && <BookOpen size={12} className="inline mr-1 mb-0.5" />}
                                 {t === 'Interview Process' && <Lightbulb size={12} className="inline mr-1 mb-0.5" />}
@@ -403,7 +593,7 @@ function CompanyCard({ company, done, onToggleDone }) {
                                         >
                                             {i + 1}
                                         </span>
-                                        <span className="text-sm text-slate-700 leading-relaxed">{step}</span>
+                                        <span className="text-sm text-slate-700 dark:text-gray-300 leading-relaxed">{step}</span>
                                     </li>
                                 ))}
                             </ol>
@@ -418,11 +608,11 @@ function CompanyCard({ company, done, onToggleDone }) {
                                     return (
                                         <div
                                             key={i}
-                                            className={`flex items-center gap-3 p-3 rounded-xl border transition-all ${isDone ? 'bg-green-50 border-green-100' : 'bg-slate-50 border-slate-100 hover:bg-blue-50 hover:border-blue-100'}`}
+                                            className={`flex items-center gap-3 p-3 rounded-xl border transition-all ${isDone ? 'bg-green-50 dark:bg-green-900/30 border-green-100' : 'bg-slate-50 border-slate-100 hover:bg-blue-50 dark:bg-blue-900/30 hover:border-blue-100'}`}
                                         >
                                             <button
                                                 onClick={() => onToggleDone(company.name, i)}
-                                                className="shrink-0 text-slate-400 hover:text-green-500 transition-colors"
+                                                className="shrink-0 text-slate-400 dark:text-gray-500 hover:text-green-500 transition-colors"
                                                 title={isDone ? 'Mark as not done' : 'Mark as done'}
                                             >
                                                 {isDone
@@ -434,10 +624,10 @@ function CompanyCard({ company, done, onToggleDone }) {
                                                 href={q.url}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className={`flex-1 text-sm font-medium hover:underline flex items-center gap-1 ${isDone ? 'line-through text-slate-400' : 'text-slate-700'}`}
+                                                className={`flex-1 text-sm font-medium hover:underline flex items-center gap-1 ${isDone ? 'line-through text-slate-400 dark:text-gray-500' : 'text-slate-700 dark:text-gray-300'}`}
                                             >
                                                 {q.title}
-                                                <ExternalLink size={11} className="text-slate-400 shrink-0" />
+                                                <ExternalLink size={11} className="text-slate-400 dark:text-gray-500 shrink-0" />
                                             </a>
                                             <DifficultyBadge difficulty={q.difficulty} />
                                         </div>
@@ -490,8 +680,8 @@ export default function CompanyPrepPage() {
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                     <div>
-                        <h1 className="text-2xl font-bold text-text-primary">Company Prep 🏢</h1>
-                        <p className="text-text-secondary text-sm mt-1">Interview guides, topics & LeetCode questions by company</p>
+                        <h1 className="text-2xl font-bold text-text-primary dark:text-gray-100">Company Prep 🏢</h1>
+                        <p className="text-text-secondary dark:text-gray-400 text-sm mt-1">Interview guides, topics & LeetCode questions by company</p>
                     </div>
                     <div
                         className="flex items-center gap-3 px-5 py-3 rounded-2xl border border-slate-200"
@@ -499,12 +689,12 @@ export default function CompanyPrepPage() {
                     >
                         <div className="text-center">
                             <div className="text-lg font-black text-blue-600">{solvedQ}</div>
-                            <div className="text-xs text-slate-500">Solved</div>
+                            <div className="text-xs text-slate-500 dark:text-gray-400">Solved</div>
                         </div>
                         <div className="w-px h-8 bg-slate-200" />
                         <div className="text-center">
-                            <div className="text-lg font-black text-slate-700">{totalQ}</div>
-                            <div className="text-xs text-slate-500">Total</div>
+                            <div className="text-lg font-black text-slate-700 dark:text-gray-300">{totalQ}</div>
+                            <div className="text-xs text-slate-500 dark:text-gray-400">Total</div>
                         </div>
                     </div>
                 </div>
@@ -513,13 +703,13 @@ export default function CompanyPrepPage() {
                 <div className="flex flex-col sm:flex-row gap-3">
                     {/* Search */}
                     <div className="relative flex-1 max-w-xs">
-                        <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                        <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500" />
                         <input
                             type="text"
                             placeholder="Search company..."
                             value={search}
                             onChange={e => setSearch(e.target.value)}
-                            className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm text-slate-700 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all"
+                            className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white dark:bg-gray-800 text-sm text-slate-700 dark:text-gray-300 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all"
                         />
                     </div>
 
@@ -536,7 +726,7 @@ export default function CompanyPrepPage() {
                                         ? d === 'All'
                                             ? 'bg-slate-800 text-white border-slate-800'
                                             : ''
-                                        : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'}`}
+                                        : 'bg-white dark:bg-gray-800 text-slate-600 dark:text-gray-400 border-slate-200 hover:border-slate-300'}`}
                                     style={active && d !== 'All' ? { background: cfg?.bg, color: cfg?.text, borderColor: cfg?.bar } : {}}
                                 >
                                     {d}
@@ -548,7 +738,7 @@ export default function CompanyPrepPage() {
 
                 {/* Company grid */}
                 {filtered.length === 0 ? (
-                    <div className="text-center py-16 text-slate-400">
+                    <div className="text-center py-16 text-slate-400 dark:text-gray-500">
                         <div className="text-4xl mb-3">🔍</div>
                         <p className="font-medium">No companies found</p>
                         <p className="text-sm mt-1">Try a different search or filter</p>

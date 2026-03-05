@@ -9,8 +9,8 @@ function FloatInput({ label, type = 'text', value, onChange, required }) {
     return (
         <div className="input-group">
             <input type={type} value={value} onChange={onChange} placeholder=" " required={required}
-                className="w-full px-4 pt-5 pb-2 border border-border rounded-xl text-sm outline-none focus:border-primary transition-all bg-white text-textPrimary" />
-            <label className="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-textSecondary pointer-events-none transition-all peer-focus:top-2 peer-focus:text-xs">{label}</label>
+                className="w-full px-4 pt-5 pb-2 border border-border dark:border-gray-700 rounded-xl text-sm outline-none focus:border-primary transition-all bg-white dark:bg-gray-800 text-textPrimary dark:text-gray-100" />
+            <label className="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-textSecondary dark:text-gray-400 pointer-events-none transition-all peer-focus:top-2 peer-focus:text-xs">{label}</label>
         </div>
     );
 }
@@ -67,8 +67,8 @@ export default function LoginPage() {
                             style={{ background: 'linear-gradient(135deg, #2563EB, #6366F1)' }}>
                             <span className="text-white font-black text-xl">P</span>
                         </div>
-                        <h1 className="text-2xl font-black text-textPrimary">Welcome back</h1>
-                        <p className="text-textSecondary text-sm mt-1">Sign in to continue your prep</p>
+                        <h1 className="text-2xl font-black text-textPrimary dark:text-gray-100">Welcome back</h1>
+                        <p className="text-textSecondary dark:text-gray-400 text-sm mt-1">Sign in to continue your prep</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -91,7 +91,7 @@ export default function LoginPage() {
                         </button>
                     </form>
 
-                    <p className="text-center text-sm text-textSecondary mt-6">
+                    <p className="text-center text-sm text-textSecondary dark:text-gray-400 mt-6">
                         New to PlaceMate?{' '}
                         <Link href="/auth/register" className="text-primary font-semibold hover:underline">Create account</Link>
                     </p>

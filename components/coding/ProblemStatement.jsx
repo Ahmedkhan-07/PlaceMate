@@ -32,12 +32,12 @@ export default function ProblemStatement({ problem }) {
             )}
 
             <div className="prose prose-invert prose-sm max-w-none">
-                <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">{problem.description}</p>
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">{problem.description}</p>
             </div>
 
             {problem.examples?.map((ex, i) => (
-                <div key={i} className="bg-gray-50 border border-gray-200 rounded-xl p-4 space-y-2">
-                    <p className="text-xs font-semibold text-gray-500">Example {i + 1}</p>
+                <div key={i} className="bg-gray-50 border border-gray-200 dark:border-gray-700 rounded-xl p-4 space-y-2">
+                    <p className="text-xs font-semibold text-gray-500 dark:text-gray-400">Example {i + 1}</p>
                     {ex.input && (
                         <div>
                             <span className="text-xs text-gray-400">Input: </span>
@@ -51,17 +51,17 @@ export default function ProblemStatement({ problem }) {
                         </div>
                     )}
                     {ex.explanation && (
-                        <p className="text-xs text-gray-500">{ex.explanation}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{ex.explanation}</p>
                     )}
                 </div>
             ))}
 
             {problem.constraints?.length > 0 && (
                 <div>
-                    <p className="text-xs font-semibold text-gray-500 mb-2">Constraints</p>
+                    <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2">Constraints</p>
                     <ul className="space-y-1">
                         {problem.constraints.map((c, i) => (
-                            <li key={i} className="text-xs text-gray-500">• {c}</li>
+                            <li key={i} className="text-xs text-gray-500 dark:text-gray-400">• {c}</li>
                         ))}
                     </ul>
                 </div>

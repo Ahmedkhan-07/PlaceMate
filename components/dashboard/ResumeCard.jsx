@@ -57,19 +57,19 @@ export default function ResumeCard({ user }) {
         : null;
 
     return (
-        <div className="bg-white rounded-2xl border border-border shadow-sm p-5">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-border dark:border-gray-700 shadow-sm p-5">
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                     <div className="w-8 h-8 rounded-lg flex items-center justify-center"
                         style={{ background: 'linear-gradient(135deg, #2563EB22, #6366F122)' }}>
                         <FileText size={16} style={{ color: '#2563EB' }} />
                     </div>
-                    <h3 className="font-semibold text-text-primary text-sm">Resume</h3>
+                    <h3 className="font-semibold text-text-primary dark:text-gray-100 text-sm">Resume</h3>
                 </div>
                 <button
                     onClick={() => fileRef.current?.click()}
                     disabled={uploading}
-                    className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg border border-border hover:bg-background hover:border-primary transition-all text-text-secondary hover:text-primary"
+                    className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg border border-border dark:border-gray-700 hover:bg-background dark:hover:bg-[#0F172A] dark:bg-[#0F172A] dark:hover:bg-[#0F172A] dark:bg-[#0F172A] hover:border-primary transition-all text-text-secondary dark:text-gray-400 hover:text-primary"
                 >
                     {uploading ? <Loader2 size={12} className="animate-spin" /> : <Upload size={12} />}
                     {uploading ? 'Uploading...' : 'Upload New'}
@@ -83,8 +83,8 @@ export default function ResumeCard({ user }) {
                     <div className="flex items-center gap-4">
                         <CircularProgress score={score} />
                         <div className="flex-1 min-w-0">
-                            <p className="font-semibold text-text-primary text-sm truncate">{filename}</p>
-                            <p className="text-xs text-text-secondary mt-0.5">{uploadDate}</p>
+                            <p className="font-semibold text-text-primary dark:text-gray-100 text-sm truncate">{filename}</p>
+                            <p className="text-xs text-text-secondary dark:text-gray-400 mt-0.5">{uploadDate}</p>
                             <div className="flex items-center gap-1 mt-1">
                                 <BarChart2 size={12} style={{ color: '#2563EB' }} />
                                 <span className="text-xs font-medium" style={{ color: '#2563EB' }}>AI Score: {score}/100</span>
@@ -94,12 +94,12 @@ export default function ResumeCard({ user }) {
 
                     {/* AI Suggestions */}
                     {suggestions.length > 0 && (
-                        <div className="bg-background rounded-xl p-3 space-y-1.5">
-                            <p className="text-xs font-semibold text-text-primary mb-2">Top AI Suggestions</p>
+                        <div className="bg-background dark:bg-[#0F172A] dark:bg-[#0F172A] rounded-xl p-3 space-y-1.5">
+                            <p className="text-xs font-semibold text-text-primary dark:text-gray-100 mb-2">Top AI Suggestions</p>
                             {suggestions.slice(0, 3).map((s, i) => (
                                 <div key={i} className="flex items-start gap-1.5">
                                     <span className="text-xs mt-px" style={{ color: '#F59E0B' }}>•</span>
-                                    <span className="text-xs text-text-secondary">{s}</span>
+                                    <span className="text-xs text-text-secondary dark:text-gray-400">{s}</span>
                                 </div>
                             ))}
                         </div>
@@ -107,7 +107,7 @@ export default function ResumeCard({ user }) {
 
                     <button
                         onClick={() => router.push('/profile/settings')}
-                        className="w-full flex items-center justify-between py-2 px-3 rounded-xl text-xs font-medium border border-border hover:bg-background transition-colors text-text-primary"
+                        className="w-full flex items-center justify-between py-2 px-3 rounded-xl text-xs font-medium border border-border dark:border-gray-700 hover:bg-background dark:hover:bg-[#0F172A] dark:bg-[#0F172A] dark:hover:bg-[#0F172A] dark:bg-[#0F172A] transition-colors text-text-primary dark:text-gray-100"
                     >
                         <span>View Full Analysis</span>
                         <ChevronRight size={14} />
@@ -118,14 +118,14 @@ export default function ResumeCard({ user }) {
                 <div className="space-y-3">
                     <div
                         onClick={() => fileRef.current?.click()}
-                        className="border-2 border-dashed border-border rounded-xl p-6 text-center cursor-pointer hover:border-primary/50 hover:bg-background transition-all"
+                        className="border-2 border-dashed border-border dark:border-gray-700 rounded-xl p-6 text-center cursor-pointer hover:border-primary/50 hover:bg-background dark:hover:bg-[#0F172A] dark:bg-[#0F172A] dark:hover:bg-[#0F172A] dark:bg-[#0F172A] transition-all"
                     >
                         <div className="w-10 h-10 rounded-xl mx-auto mb-2 flex items-center justify-center"
                             style={{ background: 'linear-gradient(135deg, #2563EB15, #6366F115)' }}>
                             <Upload size={18} style={{ color: '#2563EB' }} />
                         </div>
-                        <p className="text-sm font-semibold text-text-primary">Upload your Resume</p>
-                        <p className="text-xs text-text-secondary mt-1">PDF, DOC, DOCX — Get AI score & suggestions</p>
+                        <p className="text-sm font-semibold text-text-primary dark:text-gray-100">Upload your Resume</p>
+                        <p className="text-xs text-text-secondary dark:text-gray-400 mt-1">PDF, DOC, DOCX — Get AI score & suggestions</p>
                     </div>
                     <a
                         href="https://placement-os-nine.vercel.app/"

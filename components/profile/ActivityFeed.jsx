@@ -13,8 +13,8 @@ const TypeColors = {
 
 export default function ActivityFeed({ activities = [] }) {
     return (
-        <div className="bg-white border border-gray-200 rounded-xl p-5">
-            <h3 className="text-sm font-semibold text-gray-800 mb-4">Recent Activity</h3>
+        <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5">
+            <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-4">Recent Activity</h3>
             {activities.length === 0 ? (
                 <p className="text-sm text-gray-400 text-center py-4">No recent activity</p>
             ) : (
@@ -28,7 +28,7 @@ export default function ActivityFeed({ activities = [] }) {
                                     <Icon className="h-4 w-4" />
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <p className="text-sm text-gray-800 truncate">{act.title}</p>
+                                    <p className="text-sm text-gray-800 dark:text-gray-200 truncate">{act.title}</p>
                                     <p className="text-xs text-gray-400">
                                         Score: {act.score} · {act.createdAt ? formatDistanceToNow(new Date(act.createdAt), { addSuffix: true }) : 'Recently'}
                                     </p>

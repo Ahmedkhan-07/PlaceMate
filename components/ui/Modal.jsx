@@ -38,7 +38,7 @@ export default function Modal({ isOpen, onClose, title, children, size = 'md', c
         >
             <div
                 className={`
-          relative w-full ${sizes[size]} bg-white
+          relative w-full ${sizes[size]} bg-white dark:bg-gray-800
           rounded-2xl overflow-hidden
           animate-slideUp
           ${className}
@@ -49,11 +49,11 @@ export default function Modal({ isOpen, onClose, title, children, size = 'md', c
                 <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, #2563EB, #6366F1)' }} />
 
                 {title && (
-                    <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-                        <h2 className="text-base font-semibold text-text-primary">{title}</h2>
+                    <div className="flex items-center justify-between px-6 py-4 border-b border-border dark:border-gray-700">
+                        <h2 className="text-base font-semibold text-text-primary dark:text-gray-100">{title}</h2>
                         <button
                             onClick={onClose}
-                            className="p-1.5 text-text-secondary hover:text-text-primary hover:bg-background rounded-lg transition-colors"
+                            className="p-1.5 text-text-secondary dark:text-gray-400 hover:text-text-primary dark:text-gray-100 hover:bg-background dark:hover:bg-[#0F172A] dark:bg-[#0F172A] dark:hover:bg-[#0F172A] dark:bg-[#0F172A] rounded-lg transition-colors"
                         >
                             <X className="h-4 w-4" />
                         </button>
@@ -62,7 +62,7 @@ export default function Modal({ isOpen, onClose, title, children, size = 'md', c
                 {!title && (
                     <button
                         onClick={onClose}
-                        className="absolute top-5 right-5 p-1.5 text-text-secondary hover:text-text-primary hover:bg-background rounded-lg transition-colors z-10"
+                        className="absolute top-5 right-5 p-1.5 text-text-secondary dark:text-gray-400 hover:text-text-primary dark:text-gray-100 hover:bg-background dark:hover:bg-[#0F172A] dark:bg-[#0F172A] dark:hover:bg-[#0F172A] dark:bg-[#0F172A] rounded-lg transition-colors z-10"
                     >
                         <X className="h-4 w-4" />
                     </button>

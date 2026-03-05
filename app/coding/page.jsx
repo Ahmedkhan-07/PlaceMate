@@ -165,8 +165,8 @@ export default function CodingPage() {
             <div className="space-y-4">
                 <div className="flex items-center justify-between flex-wrap gap-3">
                     <div>
-                        <h1 className="text-2xl font-bold text-text-primary">Coding practice</h1>
-                        <p className="text-text-secondary text-sm">AI-generated coding problems with live execution</p>
+                        <h1 className="text-2xl font-bold text-text-primary dark:text-gray-100">Coding practice</h1>
+                        <p className="text-text-secondary dark:text-gray-400 text-sm">AI-generated coding problems with live execution</p>
                     </div>
                     <div className="flex items-center gap-3">
                         <Select value={language} onChange={e => handleLangChange(e.target.value)} className="w-36">
@@ -189,7 +189,7 @@ export default function CodingPage() {
                                         : level === 'medium' ? 'bg-warning text-white'
                                             : level === 'hard' ? 'bg-danger text-white'
                                                 : 'bg-secondary text-white'
-                                    : 'bg-white border border-border text-text-secondary hover:border-primary hover:text-primary'
+                                    : 'bg-white dark:bg-gray-800 border border-border dark:border-gray-700 text-text-secondary dark:text-gray-400 hover:border-primary hover:text-primary'
                                 }`}
                         >
                             {level}
@@ -199,7 +199,7 @@ export default function CodingPage() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     {/* Left: Problem */}
-                    <div className="bg-white border border-border rounded-xl p-5 h-[600px] overflow-auto">
+                    <div className="bg-white dark:bg-gray-800 border border-border dark:border-gray-700 rounded-xl p-5 h-[600px] overflow-auto">
                         <ProblemStatement problem={problem} />
                     </div>
                     {/* Right: Editor + Test + Submit */}
@@ -208,12 +208,12 @@ export default function CodingPage() {
 
                         {/* Custom stdin input */}
                         <div>
-                            <label className="text-[13px] font-medium text-text-secondary mb-1.5 block">Custom input (stdin)</label>
+                            <label className="text-[13px] font-medium text-text-secondary dark:text-gray-400 mb-1.5 block">Custom input (stdin)</label>
                             <textarea
                                 value={customInput}
                                 onChange={e => setCustomInput(e.target.value)}
                                 placeholder="Enter input here e.g. 1 2 3 4 5"
-                                className="w-full h-24 px-3.5 py-2.5 rounded-md border border-border focus:border-primary outline-none font-mono text-sm resize-none bg-white text-text-primary"
+                                className="w-full h-24 px-3.5 py-2.5 rounded-md border border-border dark:border-gray-700 focus:border-primary outline-none font-mono text-sm resize-none bg-white dark:bg-gray-800 text-text-primary dark:text-gray-100"
                             />
                         </div>
 
@@ -243,11 +243,11 @@ export default function CodingPage() {
                         {/* Test Results Panel */}
                         {showResults && (
                             <div className="mt-4 space-y-3">
-                                <h3 className="font-semibold text-text-primary text-lg">Test results</h3>
+                                <h3 className="font-semibold text-text-primary dark:text-gray-100 text-lg">Test results</h3>
                                 {testResults.map((result, index) => (
                                     <div
                                         key={index}
-                                        className={`p-4 rounded-xl border ${result.passed ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}
+                                        className={`p-4 rounded-xl border ${result.passed ? 'bg-green-50 dark:bg-green-900/30 border-green-200' : 'bg-red-50 dark:bg-red-900/30 border-red-200'}`}
                                     >
                                         <div className="flex items-center gap-2 mb-2">
                                             <span>{result.passed ? '✅' : '❌'}</span>

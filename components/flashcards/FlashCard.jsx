@@ -14,7 +14,7 @@ export default function FlashCard({ card, index, total }) {
             >
                 {/* Front */}
                 <div
-                    className="absolute inset-0 bg-white border border-gray-200 rounded-2xl p-8 flex flex-col items-center justify-center backface-hidden"
+                    className="absolute inset-0 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 flex flex-col items-center justify-center backface-hidden"
                     style={{ backfaceVisibility: 'hidden' }}
                 >
                     <div className="text-xs text-emerald-700 font-medium mb-4">Question {index + 1} of {total}</div>

@@ -19,12 +19,12 @@ export default function ShareModal({ isOpen, onClose, certificate }) {
     return (
         <Modal isOpen={isOpen} onClose={onClose} title="Share Certificate" size="sm">
             <div className="space-y-4">
-                <p className="text-sm text-gray-500">Share your achievement with the world!</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Share your achievement with the world!</p>
                 <div className="flex gap-2">
                     <input
                         readOnly
                         value={url}
-                        className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-xs text-gray-700 font-mono truncate"
+                        className="flex-1 bg-gray-50 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-xs text-gray-700 dark:text-gray-300 font-mono truncate"
                     />
                     <Button size="sm" onClick={copy} icon={copied ? Check : Copy} variant={copied ? 'success' : 'primary'}>
                         {copied ? 'Copied!' : 'Copy'}

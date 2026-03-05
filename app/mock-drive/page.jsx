@@ -143,8 +143,8 @@ export default function MockDrivePage() {
                         <Target className="h-5 w-5 text-sky-400" />
                     </div>
                     <div>
-                        <h1 className="text-2xl font-bold text-text-primary">Mock drive</h1>
-                        <p className="text-text-secondary text-sm">Simulate a full placement round</p>
+                        <h1 className="text-2xl font-bold text-text-primary dark:text-gray-100">Mock drive</h1>
+                        <p className="text-text-secondary dark:text-gray-400 text-sm">Simulate a full placement round</p>
                     </div>
                 </div>
 
@@ -159,8 +159,8 @@ export default function MockDrivePage() {
                         {!drive ? (
                             <Card>
                                 <CardBody className="text-center py-8 space-y-4">
-                                    <p className="text-text-primary">Complete 3 rounds: Aptitude → Technical → Coding</p>
-                                    <p className="text-sm text-text-secondary">Pass all rounds with 60%+ to earn a certificate</p>
+                                    <p className="text-text-primary dark:text-gray-100">Complete 3 rounds: Aptitude → Technical → Coding</p>
+                                    <p className="text-sm text-text-secondary dark:text-gray-400">Pass all rounds with 60%+ to earn a certificate</p>
                                     <Button onClick={startDrive} loading={loading} fullWidth>Start Mock Drive</Button>
                                 </CardBody>
                             </Card>
@@ -185,7 +185,7 @@ export default function MockDrivePage() {
                     <Card>
                         <CardBody className="space-y-6">
                             <div className="flex items-center justify-between">
-                                <span className="text-sm font-semibold text-text-primary capitalize">{round.type} round</span>
+                                <span className="text-sm font-semibold text-text-primary dark:text-gray-100 capitalize">{round.type} round</span>
                                 <TimerBar duration={90} running={!showAnswer} key={currentQ} onExpire={() => setShowAnswer(true)} />
                             </div>
                             {round.type === 'technical' ? (

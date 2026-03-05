@@ -9,7 +9,7 @@ export default function DriveProgress({ rounds = [], current = 0 }) {
                     <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all
             ${i < current ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
                             : i === current ? 'bg-emerald-600/20 text-emerald-700 border border-emerald-600/30'
-                                : 'bg-gray-200 text-gray-400 border border-gray-200'}
+                                : 'bg-gray-200 text-gray-400 border border-gray-200 dark:border-gray-700'}
           `}>
                         {i < current
                             ? <CheckCircle className="h-3 w-3" />

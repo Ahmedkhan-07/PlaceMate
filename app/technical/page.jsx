@@ -74,9 +74,9 @@ export default function TechnicalPage() {
         <AppLayout>
             <div className="max-w-2xl mx-auto space-y-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-text-primary">Technical MCQs</h1>
-                    <p className="text-text-secondary text-sm mt-1">Practice CS fundamentals — DSA, OS, DBMS, CN</p>
-                    <p className="text-gray-500 text-sm">CS fundamentals, interview-ready questions</p>
+                    <h1 className="text-2xl font-bold text-text-primary dark:text-gray-100">Technical MCQs</h1>
+                    <p className="text-text-secondary dark:text-gray-400 text-sm mt-1">Practice CS fundamentals — DSA, OS, DBMS, CN</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">CS fundamentals, interview-ready questions</p>
                 </div>
 
                 {phase === 'select' && (

@@ -33,17 +33,17 @@ export default function CertificatesPage() {
                         <Award className="h-5 w-5 text-amber-400" />
                     </div>
                     <div>
-                        <h1 className="text-2xl font-bold text-text-primary">My certificates</h1>
-                        <p className="text-text-secondary text-sm">Earned through mock drives and achievements</p>
+                        <h1 className="text-2xl font-bold text-text-primary dark:text-gray-100">My certificates</h1>
+                        <p className="text-text-secondary dark:text-gray-400 text-sm">Earned through mock drives and achievements</p>
                     </div>
                 </div>
 
                 {loading ? (
-                    <div className="text-center py-16 text-text-secondary">Loading...</div>
+                    <div className="text-center py-16 text-text-secondary dark:text-gray-400">Loading...</div>
                 ) : certificates.length === 0 ? (
                     <div className="text-center py-16">
                         <Award className="h-12 w-12 text-slate-300 mx-auto mb-3" />
-                        <p className="text-text-secondary">No certificates yet. Complete a mock drive to earn one!</p>
+                        <p className="text-text-secondary dark:text-gray-400">No certificates yet. Complete a mock drive to earn one!</p>
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

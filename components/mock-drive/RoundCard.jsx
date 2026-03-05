@@ -18,7 +18,7 @@ export default function RoundCard({ round, index, status, score, onStart }) {
     return (
         <div className={`
       flex items-center gap-4 p-5 border rounded-xl transition-all
-      ${isDone ? 'border-emerald-500/30 bg-emerald-500/5' : isActive ? 'border-emerald-600/50 bg-emerald-50/50' : 'border-gray-200 bg-gray-50'}
+      ${isDone ? 'border-emerald-500/30 bg-emerald-500/5' : isActive ? 'border-emerald-600/50 bg-emerald-50/50' : 'border-gray-200 dark:border-gray-700 bg-gray-50'}
       ${isLocked ? 'opacity-50' : ''}
     `}>
             <div className={`w-12 h-12 rounded-xl border flex items-center justify-center shrink-0 ${colorClass}`}>
@@ -26,7 +26,7 @@ export default function RoundCard({ round, index, status, score, onStart }) {
             </div>
             <div className="flex-1">
                 <div className="flex items-center gap-2">
-                    <span className="text-xs text-gray-500">Round {index + 1}</span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">Round {index + 1}</span>
                     {isDone && <CheckCircle className="h-3.5 w-3.5 text-emerald-400" />}
                 </div>
                 <h3 className="font-semibold text-white capitalize">{round.type} Round</h3>

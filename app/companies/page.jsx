@@ -49,8 +49,8 @@ export default function CompaniesPage() {
                         <Building2 className="h-5 w-5 text-teal-400" />
                     </div>
                     <div>
-                        <h1 className="text-2xl font-bold text-text-primary">Company Tracker</h1>
-                        <p className="text-text-secondary text-sm">{companies.length} companies — track your applications</p>
+                        <h1 className="text-2xl font-bold text-text-primary dark:text-gray-100">Company Tracker</h1>
+                        <p className="text-text-secondary dark:text-gray-400 text-sm">{companies.length} companies — track your applications</p>
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@ export default function CompaniesPage() {
                 />
 
                 {loading ? (
-                    <div className="text-center py-16 text-text-secondary">Loading companies...</div>
+                    <div className="text-center py-16 text-text-secondary dark:text-gray-400">Loading companies...</div>
                 ) : (
                     <CompanyGrid
                         companies={filtered}

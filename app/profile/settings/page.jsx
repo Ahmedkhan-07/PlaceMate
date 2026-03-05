@@ -12,12 +12,12 @@ const SECTIONS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
 function SectionCard({ icon: Icon, title, children }) {
     return (
-        <div className="bg-white rounded-2xl border border-border shadow-sm p-6">
-            <div className="flex items-center gap-2 mb-5 pb-3 border-b border-border">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-border dark:border-gray-700 shadow-sm p-6">
+            <div className="flex items-center gap-2 mb-5 pb-3 border-b border-border dark:border-gray-700">
                 <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #2563EB22, #6366F122)' }}>
                     <Icon size={16} style={{ color: '#2563EB' }} />
                 </div>
-                <h2 className="font-semibold text-text-primary">{title}</h2>
+                <h2 className="font-semibold text-text-primary dark:text-gray-100">{title}</h2>
             </div>
             {children}
         </div>
@@ -36,7 +36,7 @@ function FloatInput({ label, value, onChange, type = 'text', readOnly = false, p
                 style={{ ...style, background: readOnly ? '#F8F9FA' : 'white', cursor: readOnly ? 'not-allowed' : 'text' }}
             />
             <label>{label}</label>
-            {placeholder && !value && <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-text-secondary pointer-events-none opacity-60">{placeholder}</div>}
+            {placeholder && !value && <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-text-secondary dark:text-gray-400 pointer-events-none opacity-60">{placeholder}</div>}
         </div>
     );
 }
@@ -57,7 +57,7 @@ function FloatSelect({ label, value, onChange, options, disabled, placeholder = 
 
 function RankBadge({ label, value, icon }) {
     return (
-        <div className="flex flex-col items-center gap-1 p-4 rounded-2xl border border-border bg-gradient-to-b from-white to-background">
+        <div className="flex flex-col items-center gap-1 p-4 rounded-2xl border border-border dark:border-gray-700 bg-gradient-to-b from-white to-background">
             <div className="text-2xl">{icon}</div>
             <div className="text-xs font-semibold" style={{ color: '#64748B' }}>{label}</div>
             <div className="text-xl font-black" style={{ color: value > 0 ? '#2563EB' : '#94A3B8' }}>
@@ -127,11 +127,22 @@ export default function ProfileSettingsPage() {
         try {
             const token = localStorage.getItem('placemate_token');
             const fd = new FormData();
-            fd.append('file', file);
-            const res = await fetch('/api/resume/upload', { method: 'POST', headers: { Authorization: `Bearer ${token}` }, body: fd });
+            fd.append('profilePicture', file);
+            const res = await fetch('/api/profile/upload-picture', {
+                method: 'POST',
+                headers: { Authorization: `Bearer ${token}` },
+                body: fd
+            });
             const data = await res.json();
-            return data.url || form.profilePicture;
+            if (data.success) {
+                toast.success('Profile picture updated!');
+                setUser?.(prev => ({ ...prev, profilePicture: data.url }));
+                return data.url;
+            }
+            toast.error(data.message || 'Upload failed');
+            return form.profilePicture;
         } catch {
+            toast.error('Upload failed');
             return form.profilePicture;
         } finally {
             setUploading(false);
@@ -173,8 +184,8 @@ export default function ProfileSettingsPage() {
         <AppLayout>
             <div className="max-w-2xl mx-auto space-y-6 pb-24">
                 <div>
-                    <h1 className="text-2xl font-bold text-text-primary">Profile Settings</h1>
-                    <p className="text-text-secondary text-sm mt-1">Update your public profile information</p>
+                    <h1 className="text-2xl font-bold text-text-primary dark:text-gray-100">Profile Settings</h1>
+                    <p className="text-text-secondary dark:text-gray-400 text-sm mt-1">Update your public profile information</p>
                 </div>
 
                 <form onSubmit={handleSave} className="space-y-5">
@@ -198,7 +209,7 @@ export default function ProfileSettingsPage() {
                             </div>
                             <input ref={fileRef} type="file" accept="image/*" onChange={handleImageSelect} className="hidden" />
                             <button type="button" onClick={() => fileRef.current?.click()}
-                                className="mt-2 text-xs font-medium px-3 py-1.5 rounded-lg border border-border hover:bg-background transition-colors text-text-secondary">
+                                className="mt-2 text-xs font-medium px-3 py-1.5 rounded-lg border border-border dark:border-gray-700 hover:bg-background dark:hover:bg-[#0F172A] dark:bg-[#0F172A] dark:hover:bg-[#0F172A] dark:bg-[#0F172A] transition-colors text-text-secondary dark:text-gray-400">
                                 {uploading ? 'Uploading...' : 'Change Photo'}
                             </button>
                         </div>
@@ -274,7 +285,7 @@ export default function ProfileSettingsPage() {
                             <RankBadge label="Branch Rank" value={user?.branchRank || 0} icon="📚" />
                             <RankBadge label="Section Rank" value={user?.sectionRank || 0} icon="👥" />
                         </div>
-                        <p className="text-xs text-text-secondary mt-3 text-center">
+                        <p className="text-xs text-text-secondary dark:text-gray-400 mt-3 text-center">
                             Rankings are calculated automatically based on your scores and updated periodically.
                         </p>
                     </SectionCard>

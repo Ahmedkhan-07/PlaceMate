@@ -17,13 +17,13 @@ const Input = forwardRef(({
     return (
         <div className={`${className}`}>
             {label && (
-                <label className="block text-[13px] font-medium text-text-secondary mb-1.5">
+                <label className="block text-[13px] font-medium text-text-secondary dark:text-gray-400 mb-1.5">
                     {label}{required && <span className="text-danger ml-0.5">*</span>}
                 </label>
             )}
             <div className="relative">
                 {Icon && (
-                    <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+                    <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500 pointer-events-none">
                         <Icon className="h-4 w-4" />
                     </div>
                 )}
@@ -34,12 +34,12 @@ const Input = forwardRef(({
                     onBlur={() => setFocused(false)}
                     placeholder={props.placeholder || ' '}
                     className={`
-            w-full bg-white border rounded-md text-text-primary text-sm
-            placeholder:text-slate-400 transition-colors duration-200
+            w-full bg-white dark:bg-gray-800 border rounded-md text-text-primary dark:text-gray-100 text-sm
+            placeholder:text-slate-400 dark:text-gray-500 transition-colors duration-200
             focus:outline-none focus:border-primary
             ${error
                             ? 'border-danger focus:border-danger'
-                            : 'border-border'
+                            : 'border-border dark:border-gray-700'
                         }
             ${Icon ? 'pl-10' : 'px-3.5'}
             ${iconRight ? 'pr-10' : ''}
@@ -48,7 +48,7 @@ const Input = forwardRef(({
                     {...props}
                 />
                 {iconRight && (
-                    <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400">
+                    <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500">
                         {iconRight}
                     </div>
                 )}
@@ -64,17 +64,17 @@ export function Textarea({ label, required, error, className = '', ...props }) {
     return (
         <div className={className}>
             {label && (
-                <label className="block text-[13px] font-medium text-text-secondary mb-1.5">
+                <label className="block text-[13px] font-medium text-text-secondary dark:text-gray-400 mb-1.5">
                     {label}{required && <span className="text-danger ml-0.5">*</span>}
                 </label>
             )}
             <textarea
                 placeholder={props.placeholder || ' '}
                 className={`
-          w-full bg-white border rounded-md text-text-primary text-sm px-3.5 py-2.5
-          placeholder:text-slate-400 transition-colors duration-200 resize-none
+          w-full bg-white dark:bg-gray-800 border rounded-md text-text-primary dark:text-gray-100 text-sm px-3.5 py-2.5
+          placeholder:text-slate-400 dark:text-gray-500 transition-colors duration-200 resize-none
           focus:outline-none focus:border-primary
-          ${error ? 'border-danger focus:border-danger' : 'border-border'}
+          ${error ? 'border-danger focus:border-danger' : 'border-border dark:border-gray-700'}
         `}
                 {...props}
             />
@@ -87,16 +87,16 @@ export function Select({ label, required, error, children, className = '', ...pr
     return (
         <div className={className}>
             {label && (
-                <label className="block text-[13px] font-medium text-text-secondary mb-1.5">
+                <label className="block text-[13px] font-medium text-text-secondary dark:text-gray-400 mb-1.5">
                     {label}{required && <span className="text-danger ml-0.5">*</span>}
                 </label>
             )}
             <select
                 className={`
-          w-full bg-white border rounded-md text-text-primary text-sm px-3.5 py-2.5
+          w-full bg-white dark:bg-gray-800 border rounded-md text-text-primary dark:text-gray-100 text-sm px-3.5 py-2.5
           transition-colors duration-200 cursor-pointer appearance-none
           focus:outline-none focus:border-primary
-          ${error ? 'border-danger focus:border-danger' : 'border-border'}
+          ${error ? 'border-danger focus:border-danger' : 'border-border dark:border-gray-700'}
         `}
                 {...props}
             >

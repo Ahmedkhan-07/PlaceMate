@@ -11,9 +11,9 @@ const activityIcons = {
 };
 
 const activityColors = {
-    aptitude: 'text-blue-700 bg-blue-50',
+    aptitude: 'text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/30',
     coding: 'text-indigo-700 bg-indigo-50',
-    technical: 'text-amber-700 bg-amber-50',
+    technical: 'text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-900/30',
     flashcard: 'text-purple-700 bg-purple-50',
     mock: 'text-sky-700 bg-sky-50',
 };
@@ -22,11 +22,11 @@ export default function RecentActivity({ activities = [] }) {
     const empty = activities.length === 0;
 
     return (
-        <div className="bg-white border border-border rounded-xl p-5 shadow-card">
-            <h3 className="text-sm font-semibold text-text-primary mb-4">Recent activity</h3>
+        <div className="bg-white dark:bg-gray-800 border border-border dark:border-gray-700 rounded-xl p-5 shadow-card">
+            <h3 className="text-sm font-semibold text-text-primary dark:text-gray-100 mb-4">Recent activity</h3>
             {empty ? (
                 <div className="text-center py-8">
-                    <p className="text-text-secondary text-sm">No activity yet. Start practicing!</p>
+                    <p className="text-text-secondary dark:text-gray-400 text-sm">No activity yet. Start practicing!</p>
                 </div>
             ) : (
                 <div className="space-y-3">
@@ -39,8 +39,8 @@ export default function RecentActivity({ activities = [] }) {
                                     <Icon className="h-4 w-4" />
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <p className="text-sm text-text-primary truncate">{activity.title}</p>
-                                    <p className="text-xs text-text-secondary">
+                                    <p className="text-sm text-text-primary dark:text-gray-100 truncate">{activity.title}</p>
+                                    <p className="text-xs text-text-secondary dark:text-gray-400">
                                         Score: {activity.score} · {activity.createdAt
                                             ? formatDistanceToNow(new Date(activity.createdAt), { addSuffix: true })
                                             : 'Recently'}
