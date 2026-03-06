@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const ScoreSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-    round: { type: String, enum: ['aptitude', 'coding', 'technical', 'daily'], required: true },
+    round: { type: String, enum: ['aptitude', 'coding', 'technical', 'daily', 'mock', 'mock-drive'], required: true },
     topic: { type: String, default: '' },
     difficulty: { type: String, default: 'Medium' },
     score: { type: Number, required: true },

@@ -30,11 +30,13 @@ Every single question MUST have exactly 4 non-empty options. Never return empty 
 The correctAnswer MUST exactly match one of the 4 options. If you cannot generate a complete question, skip it.
 Return ONLY the JSON array.`;
             const rawApt = await generateJSON(aptPrompt);
-            aptitudeQuestions = Array.isArray(rawApt) ? rawApt.filter(q =>
-                q.question && q.options && Array.isArray(q.options) && q.options.length === 4 &&
-                q.options.every(opt => opt && opt.trim() !== '') && q.correctAnswer &&
-                q.options.some(opt => opt.trim().toLowerCase() === q.correctAnswer.trim().toLowerCase())
-            ) : [];
+            aptitudeQuestions = Array.isArray(rawApt) ? rawApt.filter(q => {
+                if (!q.question || !q.options || !Array.isArray(q.options) || q.options.length !== 4) return false;
+                const opts = q.options.map(o => String(o ?? ''));
+                if (opts.some(o => o.trim() === '')) return false;
+                const ans = String(q.correctAnswer ?? '').trim();
+                return ans && opts.some(o => o.trim().toLowerCase() === ans.toLowerCase());
+            }).map(q => ({ ...q, options: q.options.map(o => String(o ?? '')), correctAnswer: String(q.correctAnswer ?? '') })) : [];
             if (aptitudeQuestions.length < 1) throw new Error('No valid aptitude questions');
         } catch (e) {
             aptitudeQuestions = [{
@@ -72,10 +74,16 @@ Return ONLY the JSON array.`;
             technicalQuestions = Array.isArray(rawTech) ? rawTech.filter(q => {
                 if (!q.question) return false;
                 if (q.type === 'short') return true;
-                return q.options && Array.isArray(q.options) && q.options.length === 4 &&
-                    q.options.every(opt => opt && opt.trim() !== '') && q.correctAnswer &&
-                    q.options.some(opt => opt.trim().toLowerCase() === q.correctAnswer.trim().toLowerCase());
-            }) : [];
+                if (!q.options || !Array.isArray(q.options) || q.options.length !== 4) return false;
+                const opts = q.options.map(o => String(o ?? ''));
+                if (opts.some(o => o.trim() === '')) return false;
+                const ans = String(q.correctAnswer ?? '').trim();
+                return ans && opts.some(o => o.trim().toLowerCase() === ans.toLowerCase());
+            }).map(q => ({
+                ...q,
+                options: q.options ? q.options.map(o => String(o ?? '')) : [],
+                correctAnswer: String(q.correctAnswer ?? ''),
+            })) : [];
             if (technicalQuestions.length < 1) throw new Error('No valid technical questions');
         } catch (e) {
             technicalQuestions = [{

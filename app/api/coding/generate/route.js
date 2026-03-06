@@ -1,108 +1,94 @@
-import { NextResponse } from 'next/server';
-import dbConnect from '@/lib/db';
-import { generateContent, parseJSON } from '@/lib/gemini';
-import { requireAuth } from '@/lib/auth';
+import { generateContent } from '@/lib/gemini'
+import connectDB from '@/lib/db'
 
-export async function POST(request) {
+export async function POST(req) {
     try {
-        const auth = await requireAuth(request);
-        if (auth.error) return auth.error;
+        await connectDB()
+        const { difficulty, topic } = await req.json()
+        const seed = Math.random().toString(36).substring(7)
+        const timestamp = Date.now()
 
-        await dbConnect();
-        const { difficulty, topic, company } = await request.json();
-        const difficultyLabel = difficulty === 'dynamic' ? 'Medium' : (difficulty || 'Medium');
+        const prompt = `Seed: ${seed} Timestamp: ${timestamp}
+Generate a unique coding problem for placement preparation with difficulty "${difficulty || 'medium'}".
+Return ONLY a valid JSON object. No markdown, no backticks, no explanation outside JSON.
 
-        try {
-            const seed = Math.random().toString(36).substring(7);
-            const timestamp = Date.now();
-            const companyCtx = company ? `This is a commonly asked problem at ${company}. ` : '';
-            const topicCtx = topic ? `Topic: ${topic}. ` : '';
-
-            const prompt = `Seed: ${seed} Timestamp: ${timestamp}
-${companyCtx}${topicCtx}Generate a unique coding problem for placement preparation with difficulty "${difficultyLabel}".
-Return ONLY a valid JSON object. No markdown, no backticks, no explanation outside the JSON.
-
-The problem must follow this exact format:
+Return exactly this format:
 {
-  "title": "Problem title here",
-  "topic": "Arrays/Strings/Math/Trees/Graph/DP etc",
-  "difficulty": "${difficultyLabel}",
-  "description": "Clear problem description here. Explain exactly how input is provided via stdin.",
+  "title": "Problem title",
+  "topic": "Arrays/Strings/Math/Trees/Graph/DP",
+  "difficulty": "${difficulty || 'medium'}",
+  "description": "Clear problem description. Explain what the function receives as parameters and what it should return.",
   "examples": [
-    { "input": "example input", "output": "example output", "explanation": "why this output" }
+    { "input": "nums = [2,7,11,15], target = 9", "output": "[0,1]", "explanation": "nums[0] + nums[1] = 9" }
   ],
-  "constraints": ["constraint 1", "constraint 2"],
+  "constraints": ["1 <= nums.length <= 10^4", "All values are unique"],
+  "starterCode": {
+    "python": "def solve(param1, param2):\\n    # Write your code here\\n    pass",
+    "javascript": "function solve(param1, param2) {\\n    // Write your code here\\n}",
+    "java": "class Solution {\\n    public returnType solve(paramType param1) {\\n        // Write your code here\\n    }\\n}",
+    "cpp": "class Solution {\\npublic:\\n    returnType solve(paramType param1) {\\n        // Write your code here\\n    }\\n};",
+    "c": "returnType solve(paramType param1) {\\n    // Write your code here\\n}"
+  },
+  "driverCode": {
+    "python": "# driver code that calls solve() with each test case and prints output",
+    "javascript": "// driver code that calls solve() with each test case and logs output",
+    "java": "// driver code with main method that calls solve() and prints output",
+    "cpp": "// driver code with main() that calls solve() and prints output",
+    "c": "// driver code with main() that calls solve() and prints output"
+  },
   "testCases": [
-    { "input": "test input 1", "output": "expected output 1" },
-    { "input": "test input 2", "output": "expected output 2" },
-    { "input": "test input 3", "output": "expected output 3" },
-    { "input": "test input 4", "output": "expected output 4" },
-    { "input": "test input 5", "output": "expected output 5" }
+    { "expectedOutput": "exact expected output as string" },
+    { "expectedOutput": "exact expected output as string" },
+    { "expectedOutput": "exact expected output as string" },
+    { "expectedOutput": "exact expected output as string" },
+    { "expectedOutput": "exact expected output as string" }
   ]
 }
 
 STRICT RULES:
-1. Always generate exactly 5 test cases minimum
-2. Every test case must have completely different inputs
-3. Every test case must produce a different output value
-4. Make it impossible to hardcode answers — all 5 outputs MUST be different values
-5. Test cases must cover: normal case, edge case, large input, small input, boundary case
-6. Input format must be consistent and clear
-7. Output must be a single line value that can be compared exactly
-8. Never generate test cases where all outputs are the same
-9. Never repeat the same problem
-10. Clearly state in description how input is provided via stdin`;
+1. starterCode must be a real function with correct parameter names and types matching the problem
+2. driverCode must call the function with hardcoded test case values and print/console.log the result
+3. Each language driverCode must be complete and runnable when appended to the starterCode
+4. testCases expectedOutput must exactly match what the driverCode prints for each test case
+5. Generate exactly 5 test cases with different inputs hardcoded in driverCode
+6. driverCode for python must print each test case result on a new line
+7. driverCode for javascript must console.log each test case result on a new line
+8. driverCode for java must use System.out.println for each test case result
+9. driverCode for cpp must use cout for each test case result
+10. Never use stdin input() or Scanner — all inputs are hardcoded in driverCode
+11. Make all 5 test cases have different inputs producing different outputs
+12. The combined starterCode + driverCode must be valid runnable code
+13. Use simple clear function names like twoSum, maxSubarray, reverseString etc
+14. Generate completely unique problem every time — seed ${seed} ensures this
 
-            const text = await generateContent(prompt);
-            const parsed = parseJSON(text);
+Example of correct python driverCode for twoSum:
+"print(twoSum([2,7,11,15], 9))\\nprint(twoSum([3,2,4], 6))\\nprint(twoSum([3,3], 6))\\nprint(twoSum([1,2,3,4], 7))\\nprint(twoSum([0,4,3,0], 0))"
 
-            if (!parsed || typeof parsed !== 'object' || !parsed.testCases) {
-                throw new Error('Invalid format from AI');
-            }
+Example of correct testCases for above:
+[
+  {"expectedOutput": "[0, 1]"},
+  {"expectedOutput": "[1, 2]"},
+  {"expectedOutput": "[0, 1]"},
+  {"expectedOutput": "[2, 3]"},
+  {"expectedOutput": "[0, 3]"}
+]`
 
-            if (parsed.testCases.length < 3) {
-                throw new Error('Not enough test cases generated');
-            }
+        const text = await generateContent(prompt)
+        const cleaned = text.replace(/```json/g, '').replace(/```/g, '').trim()
+        const parsed = JSON.parse(cleaned)
 
-            const outputs = parsed.testCases.map(tc => tc.output);
-            const uniqueOutputs = new Set(outputs);
-            if (uniqueOutputs.size === 1) {
-                throw new Error('All test cases have same output — rejecting');
-            }
-
-            const inputs = parsed.testCases.map(tc => tc.input);
-            const uniqueInputs = new Set(inputs);
-            if (uniqueInputs.size === 1) {
-                throw new Error('All test cases have same input — rejecting');
-            }
-
-            return NextResponse.json({ success: true, problem: parsed, problems: [parsed] });
-
-        } catch (err) {
-            console.error('Coding generate AI error:', err.message);
-            // Fallback problem with diverse test cases
-            const fallback = {
-                title: 'Count Character Occurrences',
-                topic: 'Strings',
-                difficulty: difficultyLabel,
-                description: 'Given a string on line 1 and a character on line 2 via stdin, count how many times that character appears in the string. Output a single integer.',
-                examples: [
-                    { input: 'hello\nl', output: '2', explanation: "'l' appears twice in 'hello'" },
-                    { input: 'banana\na', output: '3', explanation: "'a' appears 3 times in 'banana'" },
-                ],
-                constraints: ['1 <= string length <= 1000', 'character is a single lowercase letter'],
-                testCases: [
-                    { input: 'hello\nl', output: '2' },
-                    { input: 'banana\na', output: '3' },
-                    { input: 'mississippi\ns', output: '4' },
-                    { input: 'abcdefg\nz', output: '0' },
-                    { input: 'aaaaaa\na', output: '6' },
-                ],
-            };
-            return NextResponse.json({ success: true, problem: fallback, problems: [fallback] });
+        if (!parsed.starterCode || !parsed.driverCode || !parsed.testCases) {
+            throw new Error('Invalid problem format generated')
         }
+
+        if (parsed.testCases.length < 3) {
+            throw new Error('Not enough test cases')
+        }
+
+        return Response.json({ success: true, problem: parsed }, { status: 200 })
+
     } catch (error) {
-        console.error('Coding generate error:', error);
-        return NextResponse.json({ message: 'Server error' }, { status: 500 });
+        console.error('Coding generate error:', error)
+        return Response.json({ success: false, message: error.message }, { status: 500 })
     }
 }

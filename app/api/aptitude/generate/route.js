@@ -55,15 +55,18 @@ Return ONLY the JSON array.`;
 
             questions = await generateJSON(prompt);
 
-            const validQuestions = questions.filter(q =>
-                q.question &&
-                q.options &&
-                Array.isArray(q.options) &&
-                q.options.length === 4 &&
-                q.options.every(opt => opt && opt.trim() !== '') &&
-                q.correctAnswer &&
-                q.options.some(opt => opt.trim().toLowerCase() === q.correctAnswer.trim().toLowerCase())
-            );
+            const validQuestions = questions.filter(q => {
+                if (!q.question || !q.options || !Array.isArray(q.options) || q.options.length !== 4) return false;
+                const opts = q.options.map(o => String(o ?? ''));
+                if (opts.some(o => o.trim() === '')) return false;
+                const ans = String(q.correctAnswer ?? '').trim();
+                if (!ans) return false;
+                return opts.some(o => o.trim().toLowerCase() === ans.toLowerCase());
+            }).map(q => ({
+                ...q,
+                options: q.options.map(o => String(o ?? '')),
+                correctAnswer: String(q.correctAnswer ?? ''),
+            }));
 
             if (validQuestions.length < 5) {
                 throw new Error('Not enough valid questions generated');
